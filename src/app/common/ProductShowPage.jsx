@@ -1,0 +1,308 @@
+import React, { useState, useEffect } from "react";
+import Container from "./Container";
+import Headings1 from "./Headings";
+import { useSelector, useDispatch } from "react-redux";
+import ProductCart from "./ProductCart";
+import FilterSide from "./FilterSide";
+import {
+  accessoriesHandle,
+  electronicsHandle,
+  filterPriceHandle,
+  hightPriceHandle,
+  menFassionHandle,
+  womenFassionHandle,
+} from "../../redux/slice";
+import api from "../../api/api";
+import Loading from "./Loading";
+function ProductShowPage({ showingProduct, text, category }) {
+  const dispatch = useDispatch();
+  const [electronics, setElectronics] = useState([]);
+  const electronicsDataFromStore = useSelector((state) => state.electronics);
+  //geeting men & women fassion from store
+  const [menFasssion, setMenFassion] = useState([]);
+  const [womenFasssion, setWomenFassion] = useState([]);
+  const [accessories, setAccessories] = useState([]);
+
+  // geeting menfassion from store
+  const menFasionFromStore = useSelector(
+    (state) => state.fassion.menFassion.allFassion
+  );
+
+  // geeting womenfassion from store
+  const womenFassionFromStore = useSelector(
+    (state) => state.fassion.womenFassion.allFassion
+  );
+
+  // geeting accessories from store
+  const accessoriesFromStore = useSelector(
+    (state) => state.fassion.womenFassion.allFassion
+  );
+
+  /// all product fetching in this useEffect
+  useEffect(() => {
+    // fatching electronic data from api
+    const electronicDataFetchFunc = async () => {
+      try {
+        const [
+          phone,
+          laptops,
+          menwatches,
+          tablet,
+          mobileAccesories,
+          womenWatches,
+        ] = await Promise.all([
+          fetch(
+            "https://dummyjson.com/products/category/smartphones?limit=10"
+          ).then((res) => res.json()),
+
+          fetch(
+            "https://dummyjson.com/products/category/laptops?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/mens-watches?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/tablets?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/mobile-accessories?limit=14"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/womens-watches?limit=10"
+          ).then((res) => res.json()),
+        ]);
+
+        setElectronics((prev) =>
+          [
+            phone.products,
+            laptops.products,
+            menwatches.products,
+            tablet.products,
+            mobileAccesories.products,
+            womenWatches.products,
+          ].flat()
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    electronicsDataFromStore.length === 0 && electronicDataFetchFunc();
+
+    // fatching men fassion data from api
+    const menFassionFunc = async () => {
+      try {
+        const [menShirt, menShoes, menWatches] = await Promise.all([
+          fetch(
+            "https://dummyjson.com/products/category/mens-shirts?limit=10"
+          ).then((res) => res.json()),
+
+          fetch(
+            "https://dummyjson.com/products/category/mens-shoes?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/mens-watches?limit=10"
+          ).then((res) => res.json()),
+        ]);
+
+        setMenFassion((prev) =>
+          [menShirt.products, menShoes.products, menWatches.products].flat()
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    menFasionFromStore.length === 0 && menFassionFunc();
+
+    // fatching women fassion data from api
+    const womenFassionFunc = async () => {
+      try {
+        const [
+          womenBags,
+          womenDress,
+          womenJewellery,
+          womenShoes,
+          womenWatches,
+          tops,
+        ] = await Promise.all([
+          fetch(
+            "https://dummyjson.com/products/category/womens-bags?limit=10"
+          ).then((res) => res.json()),
+
+          fetch(
+            "https://dummyjson.com/products/category/womens-dresses?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/womens-jewellery?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/womens-shoes?limit=10"
+          ).then((res) => res.json()),
+          fetch(
+            "https://dummyjson.com/products/category/womens-watches?limit=10"
+          ).then((res) => res.json()),
+          fetch("https://dummyjson.com/products/category/tops").then((res) =>
+            res.json()
+          ),
+        ]);
+
+        setWomenFassion((prev) =>
+          [
+            womenDress.products,
+            womenBags.products,
+            womenJewellery.products,
+            womenShoes.products,
+            womenWatches.products,
+            tops.products,
+          ].flat()
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    womenFassionFromStore.length === 0 && womenFassionFunc();
+
+    // fatching accessories fassion data from api
+    const accessoriesFunc = async () => {
+      try {
+        const [tops] = await Promise.all([
+          fetch("https://dummyjson.com/products/category/tops").then((res) =>
+            res.json()
+          ),
+        ]);
+
+        setAccessories((prev) => [tops.products].flat());
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    accessoriesFromStore.length === 0 && accessoriesFunc();
+  }, []);
+
+  // put electronic data in redux store
+  useEffect(() => {
+    electronicsDataFromStore.length === 0 &&
+      dispatch(electronicsHandle(electronics));
+  }, [electronics]);
+  // put menFassion data in redux store
+  useEffect(() => {
+    menFasionFromStore.length === 0 && dispatch(menFassionHandle(menFasssion));
+  }, [menFasssion]);
+  // put womenFassion data in redux store
+  useEffect(() => {
+    womenFassionFromStore.length === 0 &&
+      dispatch(womenFassionHandle(womenFasssion));
+  }, [womenFasssion]);
+  // put accessories data in redux store
+  useEffect(() => {
+    accessoriesFromStore.length === 0 &&
+      dispatch(accessoriesHandle(accessories));
+  }, [accessories]);
+
+  // tracking maximam and minimum price of product;
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
+  useEffect(() => {
+    let prevHighPrice = 0;
+    showingProduct.map((item) => {
+      if (item.price > prevHighPrice) {
+        prevHighPrice = item.price;
+      }
+    });
+    setMaxPrice(prevHighPrice);
+  }, [showingProduct]);
+  useEffect(() => {
+    let prevLowPrice = maxPrice;
+    showingProduct.map((item) => {
+      if (item.price < prevLowPrice) {
+        prevLowPrice = item.price;
+      }
+    });
+    setMinPrice(prevLowPrice);
+  }, [maxPrice]);
+  useEffect(() => {
+    dispatch(filterPriceHandle(minPrice));
+  }, [minPrice]);
+  useEffect(() => {
+    dispatch(hightPriceHandle(maxPrice));
+  }, [maxPrice]);
+
+  return showingProduct.length === 0 ? (
+    <Loading />
+  ) : (
+    <Container>
+      <div className="lg:flex gap-2.5 mt-2">
+        <div className="lg:w-[25%] xl:w-[18%] lg:static absolute lg:bg-auto bg-white z-40">
+          <FilterSide
+            cagories={
+              <div>
+                <h3 className="font-alan font-medium uppercase t">
+                  {category}
+                </h3>
+              </div>
+            }
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+          />
+        </div>
+        <div className="w-full lg:w-[75%] xl:w-[82%]">
+          <Headings1>{text}</Headings1>
+
+          <div className="flex items-center flex-wrap w-full">
+            {showingProduct.length > 0 &&
+              showingProduct.map(
+                (
+                  { id, price, images, title, rating, discountPercentage },
+                  idx
+                ) => {
+                  return (
+                    <div
+                      key={idx}
+                      className="sm2:w-[33.33%] sm1:w-[25%] w-[50%] lg:w-[25%] 2xl:w-[16.66%] xl:w-[20%]"
+                    >
+                      <ProductCart
+                        itemId={id}
+                        className={""}
+                        price={price}
+                        rating={
+                          <div className="flex py-0.5 items-center justify-between gap-1.5 font-medium">
+                            <div className="flex items-center gap-0.5">
+                              {Array(Math.round(rating))
+                                .fill(null)
+                                .map(
+                                  (item) =>
+                                    item === null && (
+                                      <div className="w-3">
+                                        <img src="/icons/star.png" alt="" />
+                                      </div>
+                                    )
+                                )}
+                            </div>
+                            <p className="text-gray-500 text-[13px]">
+                              <span className="text-gray-500 text-[13px]">
+                                Rating
+                              </span>
+                              : {rating}
+                            </p>
+                          </div>
+                        }
+                        img={images[0]}
+                        title={title}
+                        discountParcent={discountPercentage}
+                        discount={
+                          <p className="text-[11px] md:text-[12px] text-gray-300 font-alan bg-[#cc0c39] px-1 md:px-1.5 py-0.5 font-medium md:py-1 rounded-lg">
+                            {discountPercentage}%
+                          </p>
+                        }
+                      />
+                    </div>
+                  );
+                }
+              )}
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
+}
+
+export default ProductShowPage;

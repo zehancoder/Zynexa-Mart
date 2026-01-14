@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Comfortaa:wght@300..700&family=Comic+Relief:wght@400;700&family=Lexend:wght@100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-lexend: "Lexend", sans-serif;
+}
+@theme {
+  --font-comforta: "Comfortaa", sans-serif;
+}
+@theme {
+  --font-alan: "Alan Sans", sans-serif;
+}
+@theme {
+  --breakpoint-sm2: 580px;
+}
+@theme {
+  --breakpoint-sm1: 850px;
+}
+
+body{
+ overflow-x: hidden;
+}
+/* css for all category link anime */
+.cateRightParent:hover .categoryRight {
+  visibility: visible;
+  transform: translateX(25px);
+}
+
+/* carousel hover showing */
+
+.arrowChild {
+  visibility: hidden;
+}
+#arrowParent:hover .arrowChild {
+  visibility: visible;
+}
+
+/* add css for tranding category button */
+.viewButton {
+  transform: translateY(400%);
+}
+
+.viewBtnParent:hover .viewButton {
+  transform: translateY(0);
+}
+
+/* add css animation for cart favourite and view icons */
+.cartAnimate {
+  transform: translateY(250%);
+  transition: all 0.3s ease-in-out;
+}
+.cartParent:hover .cartAnimate {
+  transform: translateY(0);
+  opacity: 100;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply w-4 h-4 bg-[#fff] border border-gray-700 rounded-full cursor-pointer;
+}
+
+/* add animation for loading */
+
+.rotate-loading{
+  animation: rotateAnimate infinite 1s;
+}
+
+@keyframes rotateAnimate {
+  100%{
+    transform: rotate(360deg);
+  }
+}
