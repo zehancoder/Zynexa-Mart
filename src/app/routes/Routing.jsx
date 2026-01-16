@@ -11,6 +11,9 @@ import WomenFassion from "../pages/categoryPages/fassion/womenFassion/WomenFassi
 import SmartWatches from "../pages/categoryPages/electronics/SmartWatches";
 import Shoes from "../pages/categoryPages/fassion/Shoes";
 import Bags from "../pages/categoryPages/fassion/Bags";
+import Accessories from "../pages/categoryPages/fassion/Accessories";
+import HeadphoneAirbird from "../pages/categoryPages/electronics/HeadphoneAirbird";
+import HomeFurniture from "../pages/categoryPages/homeFurniture/HomeFurniture";
 
 function Routing() {
   return (
@@ -28,6 +31,9 @@ function Routing() {
       <Route path="/shop-now/fassion/womens-fassion" element={<WomenFassion/>}/>
       <Route path="/shop-now/fassion/shoes" element={<Shoes/>}/>
       <Route path="/shop-now/fassion/handbags" element={<Bags/>}/>
+      <Route path="/shop-now/fassion/accessories" element={<Accessories/>}/>
+      <Route path="/shop-now/electronics/headphones-earbuds" element={<HeadphoneAirbird/>}/>
+      <Route path="/shop-now/home&furniture" element={<HomeFurniture/>}/>
     </Routes>
   );
 }

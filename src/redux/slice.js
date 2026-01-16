@@ -46,6 +46,8 @@ const initialState = {
     },
     accessories: [],
   },
+  // homeAppliance data store
+  homeAppelianceFurniture: [],
 };
 
 export const productSlicer = createSlice({
@@ -229,6 +231,7 @@ export const productSlicer = createSlice({
       state.completeFetch = !state.completeFetch
     },
 
+    // fassion data fetch
     menFassionHandle: (state, action) => {
       state.fassion.menFassion.allFassion = action.payload
     },
@@ -239,6 +242,10 @@ export const productSlicer = createSlice({
       state.fassion.accessories = action.payload
     },
 
+    // homeAppliance and Furniture data handle
+    homeAppelianceFurnitureHandle: (state, action) => {
+      state.homeAppelianceFurniture = action.payload;
+    }
   },
 });
 
@@ -262,6 +269,7 @@ export const {
   loadingHandle,
   menFassionHandle,
   womenFassionHandle,
-  accessoriesHandle
+  accessoriesHandle, 
+  homeAppelianceFurnitureHandle
 } = productSlicer.actions;
 export default productSlicer.reducer;

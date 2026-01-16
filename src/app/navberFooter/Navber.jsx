@@ -15,16 +15,16 @@ function Navber() {
 
   const categories = [
     { name: "Electronics", pathName: "/shop-now/electronics" },
-    { name: "Mobiles & Tablets", pathName: "/shop-now/mobiles-tablets" },
+    { name: "Mobiles & Tablets", pathName: "/shop-now/electronics/smartphones-tablet" },
     { name: "Computers & Laptops", pathName: "/shop-now/electronics/computers-laptops" },
     { name: "Gaming", pathName: "/shop-now/gaming" },
-    { name: "TV & Home Appliances", pathName: "/shop-now/tv-home-appliances" },
+    { name: "Home & Furniture", pathName: "/shop-now/home&furniture" },
     { name: "Men's Fassion", pathName: "/shop-now/fassion/mens-fassion" },
     { name: "Women's Fassion", pathName: "/shop-now/fassion/womens-fassion" },
     { name: "Kids & Baby", pathName: "/shop-now/kids-baby" },
     {
       name: "Beauty & Personal Care",
-      pathName: "/shop-now/beauty-personal-care",
+      pathName: "/shop-now/beauty&personalcare",
     },
     { name: "Health & Wellness", pathName: "/shop-now/health-wellness" },
     { name: "Home & Kitchen", pathName: "/shop-now/home-kitchen" },
@@ -170,8 +170,8 @@ function Navber() {
                           onClick={() => setOpenCate(false)}
                         >
                           <div
-                            className={`px-3 flex items-center gap-1 py-2 cateRightParent hover:text-white transition duration-200 cursor-pointer rounded-full hover:bg-[#FF6C00] ${
-                              location.pathname.split("/")[1] === pathName
+                            className={`px-3 flex items-center gap-1 py-2 cateRightParent hover:text-white transition duration-200 cursor-pointer rounded-full hover:bg-[#FF6C00]  ${
+                              location.pathname === pathName
                                 ? "bg-[#FF6C00] text-white"
                                 : "bg-transparent text-gray-700 "
                             }`}
@@ -180,7 +180,7 @@ function Navber() {
                             <div
                               className={`categoryRight transition duration-300 ${
                                 location.pathname === pathName
-                                  ? "visible"
+                                  ? "visible "
                                   : " invisible "
                               }`}
                             >

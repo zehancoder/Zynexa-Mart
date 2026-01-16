@@ -9,6 +9,7 @@ import {
   electronicsHandle,
   filterPriceHandle,
   hightPriceHandle,
+  homeAppelianceFurnitureHandle,
   menFassionHandle,
   womenFassionHandle,
 } from "../../redux/slice";
@@ -18,10 +19,11 @@ function ProductShowPage({ showingProduct, text, category }) {
   const dispatch = useDispatch();
   const [electronics, setElectronics] = useState([]);
   const electronicsDataFromStore = useSelector((state) => state.electronics);
-  //geeting men & women fassion from store
+  // making all state for store data
   const [menFasssion, setMenFassion] = useState([]);
   const [womenFasssion, setWomenFassion] = useState([]);
   const [accessories, setAccessories] = useState([]);
+  const [homeApplianceFurniture, setHomeApplianceFurniture] = useState([]);
 
   // geeting menfassion from store
   const menFasionFromStore = useSelector(
@@ -36,6 +38,11 @@ function ProductShowPage({ showingProduct, text, category }) {
   // geeting accessories from store
   const accessoriesFromStore = useSelector(
     (state) => state.fassion.womenFassion.allFassion
+  );
+
+  // geeting accessories from store
+  const homeApplianceFurnitureFromStore = useSelector(
+    (state) => state.homeAppelianceFurniture
   );
 
   /// all product fetching in this useEffect
@@ -164,18 +171,52 @@ function ProductShowPage({ showingProduct, text, category }) {
     // fatching accessories fassion data from api
     const accessoriesFunc = async () => {
       try {
-        const [tops] = await Promise.all([
-          fetch("https://dummyjson.com/products/category/tops").then((res) =>
+        const [accessories, skinCare, grocaries] = await Promise.all([
+          fetch("https://dummyjson.com/products/category/sunglasses").then(
+            (res) => res.json()
+          ),
+          fetch("https://dummyjson.com/products/category/skin-care").then(
+            (res) => res.json()
+          ),
+          fetch("https://dummyjson.com/products/category/beauty").then((res) =>
             res.json()
           ),
         ]);
 
-        setAccessories((prev) => [tops.products].flat());
+        setAccessories(() =>
+          [accessories.products, skinCare.products, grocaries.products].flat()
+        );
       } catch (err) {
         console.error(err);
       }
     };
     accessoriesFromStore.length === 0 && accessoriesFunc();
+
+    // fatching home-Appeliance & Furniture fassion data from api
+    const homeApplianceFurnitureFunc = async () => {
+      try {
+        const [homeDecoration, furniture] = await Promise.all([
+          fetch("https://dummyjson.com/products/category/home-decoration").then(
+            (res) => res.json()
+          ),
+          fetch("https://dummyjson.com/products/category/furniture").then(
+            (res) => res.json()
+          ),
+
+        ]); 
+
+        setHomeApplianceFurniture(() =>
+          [
+            homeDecoration.products,
+            furniture.products,
+          ].flat()
+        );
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    homeApplianceFurnitureFromStore.length === 0 &&
+      homeApplianceFurnitureFunc();
   }, []);
 
   // put electronic data in redux store
@@ -197,6 +238,15 @@ function ProductShowPage({ showingProduct, text, category }) {
     accessoriesFromStore.length === 0 &&
       dispatch(accessoriesHandle(accessories));
   }, [accessories]);
+  // put home-Appliance & Furniture data in redux store
+  useEffect(() => {
+    accessoriesFromStore.length === 0 &&
+      dispatch(homeAppelianceFurnitureHandle(homeApplianceFurniture));
+  }, [homeApplianceFurniture]);
+
+
+
+
 
   // tracking maximam and minimum price of product;
   const [maxPrice, setMaxPrice] = useState(0);
