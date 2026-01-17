@@ -20,7 +20,7 @@ function Electronic() {
 
   return (
     <div>
-      <ProductShowPage showingProduct={electronicsDataFromStore || []} />
+      <ProductShowPage text={"Electronics"} category={['Smartphone', 'Tablet', 'Laptop', 'Headphone', 'Earbuds', 'Watches'] || []} showingProduct={electronicsDataFromStore || []} />
     </div>
   );
 }

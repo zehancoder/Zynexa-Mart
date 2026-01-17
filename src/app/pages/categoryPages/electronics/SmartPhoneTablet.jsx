@@ -14,11 +14,12 @@ function SmartPhoneTablet() {
       
     });
   }, [electronicsDataFromStore]);
-
+  console.log(smartPhoneTablet);
+  
 
   return (
     <div>
-      <ProductShowPage text={'Smartphones and Tablet'} showingProduct={smartPhoneTablet || []} />
+      <ProductShowPage category={['Smartphone', 'Tablet', 'Apple', 'Oppo', 'Realme']} text={'Smartphones and Tablet'} showingProduct={smartPhoneTablet || []} />
     </div>
   );
 }

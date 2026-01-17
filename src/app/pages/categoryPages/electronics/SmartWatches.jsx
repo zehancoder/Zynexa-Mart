@@ -14,10 +14,12 @@ function SmartWatches() {
     });
   }, [electronicsDataFromStore]);
 
+  console.log(watches);
+  
 
   return (
     <div>
-      <ProductShowPage text={'Watches'} showingProduct={watches || []} />
+      <ProductShowPage category={['Men Watches', 'Women Watches', 'Fashion Timepieces', 'Rolex', 'Fashion Co.', 'Longines']} text={'Watches'} showingProduct={watches || []} />
     </div>
   );
 }

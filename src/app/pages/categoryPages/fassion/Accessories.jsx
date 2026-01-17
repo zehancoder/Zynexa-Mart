@@ -7,11 +7,15 @@ function Accessories() {
   const accessoriesFromStore = useSelector(
     (state) => state.fassion.accessories
   );
+  accessoriesFromStore.map((t) => {
+    console.log(t.category)
+  })
   return (
     <div>
       <ProductShowPage
         showingProduct={accessoriesFromStore || []}
         text={"Accessories"}
+        category={['Sunglasses', 'Skin-Care', 'Beauty']}
       />
     </div>
   );

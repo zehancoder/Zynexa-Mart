@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../common/Logo";
 import Container from "../common/Container";
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from "react-icons/md";
@@ -8,6 +8,7 @@ import { Link, NavLink, useLocation } from "react-router";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 function Navber() {
   const [openCate, setOpenCate] = useState(false);
@@ -15,8 +16,14 @@ function Navber() {
 
   const categories = [
     { name: "Electronics", pathName: "/shop-now/electronics" },
-    { name: "Mobiles & Tablets", pathName: "/shop-now/electronics/smartphones-tablet" },
-    { name: "Computers & Laptops", pathName: "/shop-now/electronics/computers-laptops" },
+    {
+      name: "Mobiles & Tablets",
+      pathName: "/shop-now/electronics/smartphones-tablet",
+    },
+    {
+      name: "Computers & Laptops",
+      pathName: "/shop-now/electronics/computers-laptops",
+    },
     { name: "Gaming", pathName: "/shop-now/gaming" },
     { name: "Home & Furniture", pathName: "/shop-now/home&furniture" },
     { name: "Men's Fassion", pathName: "/shop-now/fassion/mens-fassion" },
@@ -133,15 +140,28 @@ function Navber() {
   ];
 
   const location = useLocation();
-  console.log(location.pathname.split("/")[1]);
+  const getCartItem = useSelector((state) => state.cartItem);
+  const [windowScroll, setWindowScroll] = useState(0)
+  useEffect(() => {
+    const navber = document.querySelector("#navber");
+
+    window.addEventListener("scroll", (e) => {
+      if (window.scrollY > 0) {
+        navber.style.backgroundColor = "#282828";
+      } else {
+        navber.style.backgroundColor = "transparent";
+      }
+      setWindowScroll(window.scrollY)
+    });
+  }, [window.scrollY]);
 
   return (
-    <div className="px-0">
-      <p className="text-center font-lexend text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2">
+    <div className="px-0 fixed w-full z-50 transition-all duration-300" id="navber">
+      <p className={`text-center font-lexend text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? ' hidden' : ' block'}`}>
         Buy for $500 → Free Shipping!
       </p>
-      <Container className={""}>
-        <div className="flex bg-[#282828] rounded-xl py-7 px-6 items-center justify-between">
+      <Container className={" "}>
+        <div className={`flex bg-[#282828] rounded-xl ${windowScroll > 0 ? 'py-3' : 'py-7'} px-6 items-center justify-between`}>
           <div>
             <Logo />
           </div>
@@ -232,7 +252,7 @@ function Navber() {
               >
                 <FiShoppingCart />
                 <div className="bg-[#FF6C00] px-1.5 py-[0.8px] rounded-full absolute -top-1.5 text-[13px] lg:text-sm -right-1.5">
-                  0
+                  {getCartItem.length}
                 </div>
               </Link>
 
@@ -251,7 +271,7 @@ function Navber() {
         </div>
         <div>
           <div className="flex font-lexend justify-between items-center">
-            <nav className="text-[12px] md:text-[14px] flex items-center md:gap-3 gap-2 lg:gap-4 mx-auto py-3 font-medium text-gray-700">
+            <nav className={`text-[12px] md:text-[14px] flex items-center md:gap-3 gap-2 lg:gap-4 mx-auto py-3 font-medium ${windowScroll > 0 ? 'text-white' : 'text-gray-700'}`}>
               {navLinks.map(({ path, pathName, name }) => {
                 return (
                   <NavLink
@@ -263,8 +283,8 @@ function Navber() {
                           ? "bg-[#FF6C00] text-white"
                           : "bg-transparent"
                         : location.pathname === path
-                        ? "bg-[#FF6C00] text-white"
-                        : "bg-transparent"
+                          ? "bg-[#FF6C00] text-white"
+                          : "bg-transparent"
                     } relative px-3 lg:px-4 py-1.5 lg:py-2 hover:text-white transition duration-200  hover:bg-[#FF6C00] rounded-full`}
                     onClick={() => name === "Shop now" && setShopNow(!shopNow)}
                   >
@@ -291,7 +311,7 @@ function Navber() {
                                   <div
                                     className={`py-2 rounded-[6px]  ${
                                       location.pathname.split("/")[2] ===
-                                      title.toLowerCase().split(' ').join('')
+                                      title.toLowerCase().split(" ").join("")
                                         ? " text-[#FF6C00]"
                                         : "  text-gray-700"
                                     }`}
@@ -303,12 +323,20 @@ function Navber() {
                                       return (
                                         <div
                                           key={path}
-                                          className={`text-[13px] mt-3 font-normal transition duration-200 hover:text-[#FF6C00] cursor-pointer hover:scale-105 transform hover:translate-x-3 ${location.pathname.split('/')[3] === path.split('/')[1] ? "text-[#FF6C00] translate-x-3" : "text-gray-700 translate-x-0"}`}
+                                          className={`text-[13px] mt-3 font-normal transition duration-200 hover:text-[#FF6C00] cursor-pointer hover:scale-105 transform hover:translate-x-3 ${
+                                            location.pathname.split("/")[3] ===
+                                            path.split("/")[1]
+                                              ? "text-[#FF6C00] translate-x-3"
+                                              : "text-gray-700 translate-x-0"
+                                          }`}
                                         >
                                           <Link
                                             to={
                                               "/shop-now/" +
-                                               title.toLowerCase().split(' ').join('') +
+                                              title
+                                                .toLowerCase()
+                                                .split(" ")
+                                                .join("") +
                                               path
                                             }
                                           >
@@ -329,7 +357,7 @@ function Navber() {
                 );
               })}
             </nav>
-            <p className="text-center text-[14px] font-lexend lg:text-[16px] font-medium  text-[#282828] uppercase py-2">
+            <p className={`text-center text-[14px] font-lexend lg:text-[16px] font-medium  text-[#282828] uppercase py-2  ${windowScroll > 0 ? ' hidden' : ' block'}`}>
               Buy for $300 → Free Gift!
             </p>
           </div>

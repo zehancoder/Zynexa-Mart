@@ -202,14 +202,10 @@ function ProductShowPage({ showingProduct, text, category }) {
           fetch("https://dummyjson.com/products/category/furniture").then(
             (res) => res.json()
           ),
-
-        ]); 
+        ]);
 
         setHomeApplianceFurniture(() =>
-          [
-            homeDecoration.products,
-            furniture.products,
-          ].flat()
+          [homeDecoration.products, furniture.products].flat()
         );
       } catch (err) {
         console.error(err);
@@ -243,10 +239,6 @@ function ProductShowPage({ showingProduct, text, category }) {
     accessoriesFromStore.length === 0 &&
       dispatch(homeAppelianceFurnitureHandle(homeApplianceFurniture));
   }, [homeApplianceFurniture]);
-
-
-
-
 
   // tracking maximam and minimum price of product;
   const [maxPrice, setMaxPrice] = useState(0);
@@ -283,13 +275,7 @@ function ProductShowPage({ showingProduct, text, category }) {
       <div className="lg:flex gap-2.5 mt-2">
         <div className="lg:w-[25%] xl:w-[18%] lg:static absolute lg:bg-auto bg-white z-40">
           <FilterSide
-            cagories={
-              <div>
-                <h3 className="font-alan font-medium uppercase t">
-                  {category}
-                </h3>
-              </div>
-            }
+            categories={category || []}
             minPrice={minPrice}
             maxPrice={maxPrice}
           />
@@ -311,6 +297,7 @@ function ProductShowPage({ showingProduct, text, category }) {
                     >
                       <ProductCart
                         itemId={id}
+                        item={showingProduct[idx]}
                         className={""}
                         price={price}
                         rating={

@@ -5,6 +5,8 @@ import Button from "./Button";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "../../classReplace/replace";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/slice";
 
 function ProductCart({
   heartIcon,
@@ -17,36 +19,18 @@ function ProductCart({
   rating,
   img,
   className,
-  itemId
+  itemId,
+  item,
 }) {
-  // useGSAP(() => {
-  //   gsap.to(".cartAnimate", {
-  //     y: 100,
-  //     opacity: 0,
-  //   });
+  const dispatch = useDispatch();
 
-  // }, []);
+  const addItems = (mainItem) => {
+    dispatch(addToCart(mainItem));
+  };
 
-  // const animateFunc = () => {
-  //   gsap.to(".cartAnimate", {
-  //     y: 0,
-  //     opacity: 1,
-  //     stagger: 0.2,
-  //     transition: 0.3
-  //   });
-  // };
-  // const animateFinish = () => {
-  //   gsap.to(".cartAnimate", {
-  //     y: 100,
-  //     opacity: 0,
-  //     transition: 0.3,
-  //   });
-  // };
+  
+    
 
-
-  const addItems = () => {
-    console.log(itemId)
-  }
   return (
     <div
       className=" w-full p-2 cartParent "
@@ -54,7 +38,7 @@ function ProductCart({
       // onMouseLeave={animateFinish}
     >
       <div className="border border-gray-300 p-2 rounded-lg">
-        <div className={cn('w-full', className)}>
+        <div className={cn("w-full", className)}>
           <div className="w-full overflow-hidden relative">
             <img className="w-full " src={img} alt="" />
             <div className="absolute right-2 text-gray-700 bottom-3">
@@ -82,7 +66,7 @@ function ProductCart({
             </div>
           </div>
         </div>
-        <div className="w-full mt-1.5" onClick={() => addItems()}>
+        <div className="w-full mt-1.5" onClick={() => addItems(item)}>
           <Button className={"w-full"}>Add To Cart</Button>
         </div>
       </div>

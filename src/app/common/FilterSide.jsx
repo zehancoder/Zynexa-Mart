@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterPriceHandle, hightPriceHandle } from "../../redux/slice";
 
-function FilterSide({ pages, cagories, maxPrice, minPrice }) {
+function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const dispatch = useDispatch();
   const filterbyPrice = useSelector((state) => state.filterByPrice);
   const [priceInput, setPriceInput] = useState(filterbyPrice.lowPrice);
@@ -30,7 +30,21 @@ function FilterSide({ pages, cagories, maxPrice, minPrice }) {
           </p>
         </div>
         <div className="border px-3 py-4 border-gray-300">
-          <div>{cagories}</div>
+          <div className={`${categories.length >  0 ? "block" : "hidden"}`}>
+            <p className={`font-alan text-[13px] text-gray-700  uppercase sm2:text-[14px] md:text-[15px] font-medium `}>
+              Categories
+            </p>
+            <div className="flex py-3 mb-3 font-alan font-normal text-gray-700 items-center gap-2 flex-wrap">
+              {categories.length > 0 &&
+                categories.map((category) => {
+                  return (
+                    <div className="px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border">
+                      <p className="  ">{category}</p>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
           <p className="font-alan text-[13px] text-gray-700  uppercase sm2:text-[14px] md:text-[15px] font-medium">
             Price
           </p>

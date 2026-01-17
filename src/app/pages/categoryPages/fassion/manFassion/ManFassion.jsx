@@ -7,11 +7,14 @@ function ManFassion() {
     const menFasionFromStore = useSelector(
       (state) => state.fassion.menFassion.allFassion
     );
+    console.log(menFasionFromStore);
+    
   return (
     <div>
       <ProductShowPage
         showingProduct={menFasionFromStore || []}
         text={"Men's Fassion"}
+        category={['Shirts', 'Shoes', 'Watches']}
       />
     </div>
   );

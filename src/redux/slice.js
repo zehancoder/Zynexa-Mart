@@ -54,7 +54,14 @@ export const productSlicer = createSlice({
   name: "zynexa mart",
   initialState,
   reducers: {
-    addToCart: (state, action) => {},
+    addToCart: (state, action) => {
+      state.cartItem = state.cartItem.filter((product) => {
+        return product.id !== action.payload.id;
+      });
+      state.cartItem.push(action.payload);
+
+      
+    },
     removeFromCart: (state, action) => {},
     //store home slider items
     nextSlider: (state, action) => {
@@ -227,25 +234,25 @@ export const productSlicer = createSlice({
       state.filterByPrice.highPrice = action.payload;
     },
     // if fetching is complete
-    fetchCompletingHandle: (state, action)=> {
-      state.completeFetch = !state.completeFetch
+    fetchCompletingHandle: (state, action) => {
+      state.completeFetch = !state.completeFetch;
     },
 
     // fassion data fetch
     menFassionHandle: (state, action) => {
-      state.fassion.menFassion.allFassion = action.payload
+      state.fassion.menFassion.allFassion = action.payload;
     },
     womenFassionHandle: (state, action) => {
-      state.fassion.womenFassion.allFassion = action.payload
+      state.fassion.womenFassion.allFassion = action.payload;
     },
     accessoriesHandle: (state, action) => {
-      state.fassion.accessories = action.payload
+      state.fassion.accessories = action.payload;
     },
 
     // homeAppliance and Furniture data handle
     homeAppelianceFurnitureHandle: (state, action) => {
       state.homeAppelianceFurniture = action.payload;
-    }
+    },
   },
 });
 
@@ -269,7 +276,7 @@ export const {
   loadingHandle,
   menFassionHandle,
   womenFassionHandle,
-  accessoriesHandle, 
-  homeAppelianceFurnitureHandle
+  accessoriesHandle,
+  homeAppelianceFurnitureHandle,
 } = productSlicer.actions;
 export default productSlicer.reducer;
