@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "../../classReplace/replace";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, viewProductHandle } from "../../redux/slice";
+import { addToCart, productSuccessFullyAddedMsg, viewProductHandle } from "../../redux/slice";
 
 function ProductCart({
   heartIcon,
@@ -31,6 +31,7 @@ function ProductCart({
       itemQuantity: 1,
     };
     dispatch(addToCart(addQuan));
+    dispatch(productSuccessFullyAddedMsg(true))
   };
 
   /// add product viewing functionality

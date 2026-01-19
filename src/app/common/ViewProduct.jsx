@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { cn } from "../../classReplace/replace";
 import Button from "./Button";
 import { IoIosClose } from "react-icons/io";
-import { addToCart, viewProductHandle } from "../../redux/slice";
+import {
+  addToCart,
+  productSuccessFullyAddedMsg,
+  viewProductHandle,
+} from "../../redux/slice";
 
 function ViewProduct({ className }) {
   const productViewFromStore = useSelector((state) => state.productViewingItem);
@@ -24,6 +28,7 @@ function ViewProduct({ className }) {
       itemQuantity: 1,
     };
     dispatch(addToCart(addQuan));
+    dispatch(productSuccessFullyAddedMsg(true));
   };
 
   const cartProdutFromStore = useSelector((state) => state.cartItem);
@@ -91,7 +96,11 @@ function ViewProduct({ className }) {
             <div className="px-2 py-1.5 text-gray-700 font-alan font-normal text-[13px]">
               <p>Brand: {productViewFromStore.brand}</p>
               <p>Stock: {productViewFromStore.stock}</p>
-              <p>Weight: {String(productViewFromStore.weight).padEnd('0', '2') + (productViewFromStore.weight < 10 ? 'g' : 'kg')}</p>
+              <p>
+                Weight:{" "}
+                {String(productViewFromStore.weight).padEnd("0", "2") +
+                  (productViewFromStore.weight < 10 ? "g" : "kg")}
+              </p>
               <p>Warrenty: {productViewFromStore.warrantyInformation}</p>
               <p>Shipping: {productViewFromStore.shippingInformation}</p>
             </div>

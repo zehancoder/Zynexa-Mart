@@ -34,7 +34,7 @@ function Shoes() {
       <ProductShowPage
         showingProduct={shoes || []}
         text={"Shoes"}
-        category={['Men Shoes', 'Women Shoes']}
+        category={['Mens-Shoes', 'Womens-Shoes', 'All']}
       />
     </div>
   );

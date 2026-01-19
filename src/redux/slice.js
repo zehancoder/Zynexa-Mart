@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItem: [],
+  addMessege: false,
   productViewingItem: null,
   loading: false,
   slider: {
@@ -29,6 +30,8 @@ const initialState = {
     lowPrice: 0,
     highPrice: 0,
   },
+  // product filter by categories
+  filterByCategories: null,
   // adding sub category items
   subCategory: {},
   //complete fetching
@@ -64,6 +67,9 @@ export const productSlicer = createSlice({
         state.cartItem.push(action.payload);
       }
     },
+    productSuccessFullyAddedMsg: (state, action) => {
+      state.addMessege = action.payload;
+    },
     // product quantity update
     increaseProductQuantity: (state, action) => {
       state.cartItem = state.cartItem.filter((product, idx, arr) => {
@@ -90,8 +96,8 @@ export const productSlicer = createSlice({
     // remove from cart
     removeFromCart: (state, action) => {
       state.cartItem = state.cartItem.filter((item) => {
-        return item.id !== action.payload.id
-      })
+        return item.id !== action.payload.id;
+      });
     },
     // product viewing functionality
     viewProductHandle: (state, action) => {
@@ -268,6 +274,10 @@ export const productSlicer = createSlice({
     hightPriceHandle: (state, action) => {
       state.filterByPrice.highPrice = action.payload;
     },
+    // product filter by category
+    filterByCategory: (state, action) => {
+      state.filterByCategories = action.payload;
+    },
     // if fetching is complete
     fetchCompletingHandle: (state, action) => {
       state.completeFetch = !state.completeFetch;
@@ -293,6 +303,7 @@ export const productSlicer = createSlice({
 
 export const {
   addToCart,
+  productSuccessFullyAddedMsg,
   removeFromCart,
   nextSlider,
   prevSlider,
@@ -308,6 +319,7 @@ export const {
   electronicsHandle,
   filterPriceHandle,
   hightPriceHandle,
+  filterByCategory,
   loadingHandle,
   menFassionHandle,
   womenFassionHandle,
@@ -316,6 +328,5 @@ export const {
   increaseProductQuantity,
   decreaseProductQuantity,
   viewProductHandle,
-  
 } = productSlicer.actions;
 export default productSlicer.reducer;

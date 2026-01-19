@@ -19,7 +19,7 @@ function SmartWatches() {
 
   return (
     <div>
-      <ProductShowPage category={['Men Watches', 'Women Watches', 'Fashion Timepieces', 'Rolex', 'Fashion Co.', 'Longines']} text={'Watches'} showingProduct={watches || []} />
+      <ProductShowPage category={['Mens-Watches', 'Womens-Watches', 'Fashion Timepieces', 'Rolex', 'Fashion Co.', 'Longines', 'All']} text={'Watches'} showingProduct={watches || []} />
     </div>
   );
 }

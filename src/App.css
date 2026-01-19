@@ -82,3 +82,9 @@ body{
   background: rgba(0, 0, 0, 0.6); /* dark transparent */
   filter: blur(20px);
 }
+
+
+/* make custom shadow class */
+.customShadow{
+  box-shadow: 0 0 20px #FF6C00;
+}

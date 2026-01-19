@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterPriceHandle, hightPriceHandle } from "../../redux/slice";
+import {
+  filterByCategory,
+  filterPriceHandle,
+  hightPriceHandle,
+} from "../../redux/slice";
 
 function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const dispatch = useDispatch();
@@ -19,7 +23,10 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
   useEffect(() => {
     dispatch(hightPriceHandle(highPrice));
   }, [highPrice]);
-  console.log(filterbyPrice.highPrice);
+
+  // get filter by category item
+  const filterbyCategory = useSelector((state) => state.filterByCategories);
+
   return (
     <div>
       <div className="">
@@ -30,15 +37,22 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
           </p>
         </div>
         <div className="border px-3 py-4 border-gray-300">
-          <div className={`${categories.length >  0 ? "block" : "hidden"}`}>
-            <p className={`font-alan text-[13px] text-gray-700  uppercase sm2:text-[14px] md:text-[15px] font-medium `}>
+          <div className={`${categories.length > 0 ? "block" : "hidden"}`}>
+            <p
+              className={`font-alan text-[13px] text-gray-700  uppercase sm2:text-[14px] md:text-[15px] font-medium `}
+            >
               Categories
             </p>
             <div className="flex py-3 mb-3 font-alan font-normal text-gray-700 items-center gap-2 flex-wrap">
               {categories.length > 0 &&
-                categories.map((category) => {
+                categories.map((category, idx) => {
                   return (
-                    <div className="px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border">
+                    <div
+                      onClick={() =>
+                        dispatch(filterByCategory(categories[idx]))
+                      }
+                      className={`${filterbyCategory === category ? "bg-[#FF6C00] text-white" : "bg-transparent"} px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border`}
+                    >
                       <p className="  ">{category}</p>
                     </div>
                   );

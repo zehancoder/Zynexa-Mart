@@ -7,6 +7,7 @@ import FilterSide from "./FilterSide";
 import {
   accessoriesHandle,
   electronicsHandle,
+  filterByCategory,
   filterPriceHandle,
   hightPriceHandle,
   homeAppelianceFurnitureHandle,
@@ -27,22 +28,22 @@ function ProductShowPage({ showingProduct, text, category }) {
 
   // geeting menfassion from store
   const menFasionFromStore = useSelector(
-    (state) => state.fassion.menFassion.allFassion
+    (state) => state.fassion.menFassion.allFassion,
   );
 
   // geeting womenfassion from store
   const womenFassionFromStore = useSelector(
-    (state) => state.fassion.womenFassion.allFassion
+    (state) => state.fassion.womenFassion.allFassion,
   );
 
   // geeting accessories from store
   const accessoriesFromStore = useSelector(
-    (state) => state.fassion.womenFassion.allFassion
+    (state) => state.fassion.womenFassion.allFassion,
   );
 
   // geeting accessories from store
   const homeApplianceFurnitureFromStore = useSelector(
-    (state) => state.homeAppelianceFurniture
+    (state) => state.homeAppelianceFurniture,
   );
 
   /// all product fetching in this useEffect
@@ -59,23 +60,23 @@ function ProductShowPage({ showingProduct, text, category }) {
           womenWatches,
         ] = await Promise.all([
           fetch(
-            "https://dummyjson.com/products/category/smartphones?limit=10"
+            "https://dummyjson.com/products/category/smartphones?limit=10",
           ).then((res) => res.json()),
 
           fetch(
-            "https://dummyjson.com/products/category/laptops?limit=10"
+            "https://dummyjson.com/products/category/laptops?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/mens-watches?limit=10"
+            "https://dummyjson.com/products/category/mens-watches?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/tablets?limit=10"
+            "https://dummyjson.com/products/category/tablets?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/mobile-accessories?limit=14"
+            "https://dummyjson.com/products/category/mobile-accessories?limit=14",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/womens-watches?limit=10"
+            "https://dummyjson.com/products/category/womens-watches?limit=10",
           ).then((res) => res.json()),
         ]);
 
@@ -87,7 +88,7 @@ function ProductShowPage({ showingProduct, text, category }) {
             tablet.products,
             mobileAccesories.products,
             womenWatches.products,
-          ].flat()
+          ].flat(),
         );
       } catch (err) {
         console.error(err);
@@ -100,19 +101,19 @@ function ProductShowPage({ showingProduct, text, category }) {
       try {
         const [menShirt, menShoes, menWatches] = await Promise.all([
           fetch(
-            "https://dummyjson.com/products/category/mens-shirts?limit=10"
+            "https://dummyjson.com/products/category/mens-shirts?limit=10",
           ).then((res) => res.json()),
 
           fetch(
-            "https://dummyjson.com/products/category/mens-shoes?limit=10"
+            "https://dummyjson.com/products/category/mens-shoes?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/mens-watches?limit=10"
+            "https://dummyjson.com/products/category/mens-watches?limit=10",
           ).then((res) => res.json()),
         ]);
 
         setMenFassion((prev) =>
-          [menShirt.products, menShoes.products, menWatches.products].flat()
+          [menShirt.products, menShoes.products, menWatches.products].flat(),
         );
       } catch (err) {
         console.error(err);
@@ -132,23 +133,23 @@ function ProductShowPage({ showingProduct, text, category }) {
           tops,
         ] = await Promise.all([
           fetch(
-            "https://dummyjson.com/products/category/womens-bags?limit=10"
+            "https://dummyjson.com/products/category/womens-bags?limit=10",
           ).then((res) => res.json()),
 
           fetch(
-            "https://dummyjson.com/products/category/womens-dresses?limit=10"
+            "https://dummyjson.com/products/category/womens-dresses?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/womens-jewellery?limit=10"
+            "https://dummyjson.com/products/category/womens-jewellery?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/womens-shoes?limit=10"
+            "https://dummyjson.com/products/category/womens-shoes?limit=10",
           ).then((res) => res.json()),
           fetch(
-            "https://dummyjson.com/products/category/womens-watches?limit=10"
+            "https://dummyjson.com/products/category/womens-watches?limit=10",
           ).then((res) => res.json()),
           fetch("https://dummyjson.com/products/category/tops").then((res) =>
-            res.json()
+            res.json(),
           ),
         ]);
 
@@ -160,7 +161,7 @@ function ProductShowPage({ showingProduct, text, category }) {
             womenShoes.products,
             womenWatches.products,
             tops.products,
-          ].flat()
+          ].flat(),
         );
       } catch (err) {
         console.error(err);
@@ -173,18 +174,18 @@ function ProductShowPage({ showingProduct, text, category }) {
       try {
         const [accessories, skinCare, grocaries] = await Promise.all([
           fetch("https://dummyjson.com/products/category/sunglasses").then(
-            (res) => res.json()
+            (res) => res.json(),
           ),
           fetch("https://dummyjson.com/products/category/skin-care").then(
-            (res) => res.json()
+            (res) => res.json(),
           ),
           fetch("https://dummyjson.com/products/category/beauty").then((res) =>
-            res.json()
+            res.json(),
           ),
         ]);
 
         setAccessories(() =>
-          [accessories.products, skinCare.products, grocaries.products].flat()
+          [accessories.products, skinCare.products, grocaries.products].flat(),
         );
       } catch (err) {
         console.error(err);
@@ -197,15 +198,15 @@ function ProductShowPage({ showingProduct, text, category }) {
       try {
         const [homeDecoration, furniture] = await Promise.all([
           fetch("https://dummyjson.com/products/category/home-decoration").then(
-            (res) => res.json()
+            (res) => res.json(),
           ),
           fetch("https://dummyjson.com/products/category/furniture").then(
-            (res) => res.json()
+            (res) => res.json(),
           ),
         ]);
 
         setHomeApplianceFurniture(() =>
-          [homeDecoration.products, furniture.products].flat()
+          [homeDecoration.products, furniture.products].flat(),
         );
       } catch (err) {
         console.error(err);
@@ -268,7 +269,28 @@ function ProductShowPage({ showingProduct, text, category }) {
     dispatch(hightPriceHandle(maxPrice));
   }, [maxPrice]);
 
-  return showingProduct.length === 0 ? (
+  // add filtering product by category from store
+  const filterbyCategory = useSelector((state) => state.filterByCategories);
+  const [afterCategoryFilter, setAfterCategoryFilter] = useState([]);
+
+  useEffect(() => {
+    setAfterCategoryFilter(showingProduct);
+  }, [showingProduct]);
+  useEffect(() => {
+    if (filterbyCategory !== null) {
+      const updateFilter = [];
+      showingProduct.map((product) => {
+        if (product.category === filterbyCategory.toLowerCase() || product.brand.toLowerCase() === filterbyCategory.toLowerCase()) {
+          updateFilter.push(product);
+        }else{
+          setAfterCategoryFilter(showingProduct)
+        }
+      });
+      updateFilter.length > 0 && setAfterCategoryFilter(updateFilter);
+    }
+  }, [filterbyCategory]);
+
+  return afterCategoryFilter.length === 0 ? (
     <Loading />
   ) : (
     <Container>
@@ -284,11 +306,11 @@ function ProductShowPage({ showingProduct, text, category }) {
           <Headings1>{text}</Headings1>
 
           <div className="flex items-center flex-wrap w-full">
-            {showingProduct.length > 0 &&
-              showingProduct.map(
+            {afterCategoryFilter.length > 0 &&
+              afterCategoryFilter.map(
                 (
                   { id, price, images, title, rating, discountPercentage },
-                  idx
+                  idx,
                 ) => {
                   return (
                     <div
@@ -297,7 +319,7 @@ function ProductShowPage({ showingProduct, text, category }) {
                     >
                       <ProductCart
                         itemId={id}
-                        item={showingProduct[idx]}
+                        item={afterCategoryFilter[idx]}
                         className={""}
                         price={price}
                         rating={
@@ -311,7 +333,7 @@ function ProductShowPage({ showingProduct, text, category }) {
                                       <div className="w-3">
                                         <img src="/icons/star.png" alt="" />
                                       </div>
-                                    )
+                                    ),
                                 )}
                             </div>
                             <p className="text-gray-500 text-[13px]">
@@ -333,7 +355,7 @@ function ProductShowPage({ showingProduct, text, category }) {
                       />
                     </div>
                   );
-                }
+                },
               )}
           </div>
         </div>

@@ -19,7 +19,7 @@ function SmartPhoneTablet() {
 
   return (
     <div>
-      <ProductShowPage category={['Smartphone', 'Tablet', 'Apple', 'Oppo', 'Realme']} text={'Smartphones and Tablet'} showingProduct={smartPhoneTablet || []} />
+      <ProductShowPage category={['Smartphones', 'Tablets', 'Apple', 'Oppo', 'Realme']} text={'Smartphones and Tablet'} showingProduct={smartPhoneTablet || []} />
     </div>
   );
 }
