@@ -1,13 +1,27 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductCart from "../../common/ProductCart";
 import Container from "../../common/Container";
 import { FaRegHeart } from "react-icons/fa6";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoIosClose } from "react-icons/io";
+import { FiMinus, FiPlus } from "react-icons/fi";
+import {
+  decreaseProductQuantity,
+  increaseProductQuantity,
+  viewProductHandle,
+} from "../../../redux/slice";
 
 function Cart() {
   const getCartItem = useSelector((state) => state.cartItem);
+  const dispatch = useDispatch();
+  const decressQuantity = (product) => {
+    dispatch(decreaseProductQuantity(product));
+  };
+  const incressQuantity = (product) => {
+    dispatch(increaseProductQuantity(product));
+  };
+  console.log(getCartItem);
 
   return (
     <div>
@@ -36,7 +50,7 @@ function Cart() {
                           <div className="cartAnimate p-2 rounded-full bg-white cursor-pointer">
                             <FaRegHeart />
                           </div>
-                          <div className="cartAnimate p-2 rounded-full bg-white mt-2 cursor-pointer">
+                          <div onClick={() => dispatch(viewProductHandle(product))} className="cartAnimate p-2 rounded-full bg-white mt-2 cursor-pointer">
                             <AiOutlineEye />
                           </div>
                         </div>
@@ -56,14 +70,34 @@ function Cart() {
                           <p className="line-through text-gray-500 text-[13px]">
                             $
                             {(
-                              (product.price * product.discountParcent) / 100 +
+                              (product.price * product.discountPercentage) /
+                                100 +
                               product.price
                             ).toFixed(2)}
                           </p>
                         </div>
+
+                        <div className=" text-[12px] font-alan mt-3 flex items-center justify-between w-[80px]">
+                          <div
+                            className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
+                            onClick={() => {
+                              decressQuantity(product);
+                            }}
+                          >
+                            <FiMinus />
+                          </div>
+                          <p>{product.itemQuantity}</p>
+                          <div
+                            className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
+                            onClick={() => {
+                              incressQuantity(product);
+                            }}
+                          >
+                            <FiPlus />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="w-full mt-1.5 flex items-center justify-between"></div>
                   </div>
                 </div>
               );

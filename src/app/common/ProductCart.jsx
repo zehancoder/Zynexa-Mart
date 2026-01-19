@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { cn } from "../../classReplace/replace";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/slice";
+import { addToCart, viewProductHandle } from "../../redux/slice";
 
 function ProductCart({
   heartIcon,
@@ -25,15 +25,22 @@ function ProductCart({
   const dispatch = useDispatch();
 
   const addItems = (mainItem) => {
-    dispatch(addToCart(mainItem));
+    const addQuan = {
+      ...mainItem,
+      itemQuantity: 1,
+    };
+    dispatch(addToCart(addQuan));
   };
 
-  
-    
+  const viewItemFunc = (product) => {
+    if (product) {
+      dispatch(viewProductHandle(product))
+    }
+  };
 
   return (
     <div
-      className=" w-full p-2 cartParent "
+      className=" w-full p-2 cartParent"
       // onMouseOver={animateFunc}
       // onMouseLeave={animateFinish}
     >
@@ -42,10 +49,16 @@ function ProductCart({
           <div className="w-full overflow-hidden relative">
             <img className="w-full " src={img} alt="" />
             <div className="absolute right-2 text-gray-700 bottom-3">
-              <div className="cartAnimate p-2 rounded-full bg-white cursor-pointer">
+              <div
+                onClick={() => markToFavouriteFunc(item)}
+                className="cartAnimate p-2 rounded-full bg-white cursor-pointer"
+              >
                 <FaRegHeart />
               </div>
-              <div className="cartAnimate p-2 rounded-full bg-white mt-2 cursor-pointer">
+              <div
+                onClick={() => viewItemFunc(item)}
+                className="cartAnimate p-2 rounded-full bg-white mt-2 cursor-pointer"
+              >
                 <AiOutlineEye />
               </div>
             </div>
@@ -70,6 +83,7 @@ function ProductCart({
           <Button className={"w-full"}>Add To Cart</Button>
         </div>
       </div>
+
     </div>
   );
 }

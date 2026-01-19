@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItem: [],
+  productViewingItem: null,
   loading: false,
   slider: {
     sliderNum: 0,
@@ -54,15 +55,45 @@ export const productSlicer = createSlice({
   name: "zynexa mart",
   initialState,
   reducers: {
+    // add to cart functionality
     addToCart: (state, action) => {
-      state.cartItem = state.cartItem.filter((product) => {
-        return product.id !== action.payload.id;
-      });
-      state.cartItem.push(action.payload);
-
-      
+      if (action.payload.id) {
+        state.cartItem = state.cartItem.filter((product) => {
+          return product.id !== action.payload.id;
+        });
+        state.cartItem.push(action.payload);
+      }
     },
+    // product quantity update
+    increaseProductQuantity: (state, action) => {
+      state.cartItem = state.cartItem.filter((product, idx, arr) => {
+        let copyArr = state.cartItem;
+
+        if (product.id === action.payload.id) {
+          copyArr[idx].itemQuantity = copyArr[idx].itemQuantity + 1;
+        }
+        return copyArr;
+      });
+    },
+    decreaseProductQuantity: (state, action) => {
+      state.cartItem = state.cartItem.filter((product, idx, arr) => {
+        let copyArr = state.cartItem;
+
+        if (product.id === action.payload.id) {
+          if (copyArr[idx].itemQuantity > 1) {
+            copyArr[idx].itemQuantity = copyArr[idx].itemQuantity - 1;
+          }
+        }
+        return copyArr;
+      });
+    },
+    // remove from cart
     removeFromCart: (state, action) => {},
+    // product viewing functionality
+    viewProductHandle: (state, action) => {
+      state.productViewingItem = action.payload;
+    },
+
     //store home slider items
     nextSlider: (state, action) => {
       if (state.slider.sliderNum < 4) {
@@ -278,5 +309,8 @@ export const {
   womenFassionHandle,
   accessoriesHandle,
   homeAppelianceFurnitureHandle,
+  increaseProductQuantity,
+  decreaseProductQuantity,
+  viewProductHandle,
 } = productSlicer.actions;
 export default productSlicer.reducer;

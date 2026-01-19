@@ -17,7 +17,7 @@ function MostReview() {
           <div className="flex items-center rounded-lg flex-wrap">
             {geetingMostSellingData.length > 0 &&
               geetingMostSellingData.map(
-                ({ id, price, images, title, rating, discountPercentage }) => {
+                ({ id, price, images, title, rating, discountPercentage }, idx) => {
                   return (
                     <div className="w-[50%] sm2:w-[33.33%] md:w-[25%] lg:w-[20%] xl:w-[16.65%] 2xl:w-[12.5%]">
                       <ProductCart
@@ -52,6 +52,7 @@ function MostReview() {
                             {discountPercentage}%
                           </p>
                         }
+                        item={geetingMostSellingData[idx]}
                       />
                     </div>
                   );

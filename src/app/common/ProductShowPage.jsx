@@ -273,7 +273,7 @@ function ProductShowPage({ showingProduct, text, category }) {
   ) : (
     <Container>
       <div className="lg:flex gap-2.5 mt-2">
-        <div className="lg:w-[25%] xl:w-[18%] lg:static absolute lg:bg-auto bg-white z-40">
+        <div className="lg:w-[25%] xl:w-[18%] lg:static absolute lg:bg-auto bg-white z-30">
           <FilterSide
             categories={category || []}
             minPrice={minPrice}

@@ -5,7 +5,12 @@ import ProductCart from "../common/ProductCart";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { nextDeals, nextNewProduct, prevDeals, prevNewProduct } from "../../redux/slice";
+import {
+  nextDeals,
+  nextNewProduct,
+  prevDeals,
+  prevNewProduct,
+} from "../../redux/slice";
 import Button from "../common/Button";
 import { Link } from "react-router";
 function NewProducts() {
@@ -103,13 +108,16 @@ function NewProducts() {
                           img={images[0]}
                           title={title}
                           discountParcent={discountPercentage}
-                          discount={<p className="text-[11px] md:text-[12px] text-gray-300 font-alan bg-[#cc0c39] px-1 md:px-1.5 py-0.5 font-medium md:py-1 rounded-lg">
-                                {discountPercentage}%
-                              </p>}
+                          discount={
+                            <p className="text-[11px] md:text-[12px] text-gray-300 font-alan bg-[#cc0c39] px-1 md:px-1.5 py-0.5 font-medium md:py-1 rounded-lg">
+                              {discountPercentage}%
+                            </p>
+                          }
+                          item={gettingDealsData[idx]}
                         />
                       </div>
                     );
-                  }
+                  },
                 )}
             </div>
           </div>

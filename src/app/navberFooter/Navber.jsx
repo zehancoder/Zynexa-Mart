@@ -156,7 +156,7 @@ function Navber() {
   }, [window.scrollY]);
 
   return (
-    <div className="px-0 fixed w-full z-50 transition-all duration-300" id="navber">
+    <div className="px-0 fixed w-full z-40 transition-all duration-300" id="navber">
       <p className={`text-center font-lexend text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? ' hidden' : ' block'}`}>
         Buy for $500 → Free Shipping!
       </p>

@@ -161,6 +161,7 @@ function DealsSection() {
                             </div>
                           }
                           discountParcent={discountPercentage}
+                          item={refer[idx]}
                         />
                       </div>
                     );

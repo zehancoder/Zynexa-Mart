@@ -76,16 +76,16 @@ function HomePage() {
   console.log(switchData);
 
   const menFassionData = useSelector(
-    (state) => state.fassion.menFassion.allFassion
+    (state) => state.fassion.menFassion.allFassion,
   );
   const womenFassionData = useSelector(
-    (state) => state.fassion.womenFassion.allFassion
+    (state) => state.fassion.womenFassion.allFassion,
   );
   console.log(menFassionData, womenFassionData);
 
-
   return (
     <>
+
       <div className="">
         <div>
           <Container>
