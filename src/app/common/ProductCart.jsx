@@ -24,6 +24,7 @@ function ProductCart({
 }) {
   const dispatch = useDispatch();
 
+  /// add quantity functionalty in product object
   const addItems = (mainItem) => {
     const addQuan = {
       ...mainItem,
@@ -32,12 +33,14 @@ function ProductCart({
     dispatch(addToCart(addQuan));
   };
 
+  /// add product viewing functionality
   const viewItemFunc = (product) => {
     if (product) {
       dispatch(viewProductHandle(product))
     }
   };
 
+  // add functionality for favourite product
   return (
     <div
       className=" w-full p-2 cartParent"

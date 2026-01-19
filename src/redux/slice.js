@@ -88,7 +88,11 @@ export const productSlicer = createSlice({
       });
     },
     // remove from cart
-    removeFromCart: (state, action) => {},
+    removeFromCart: (state, action) => {
+      state.cartItem = state.cartItem.filter((item) => {
+        return item.id !== action.payload.id
+      })
+    },
     // product viewing functionality
     viewProductHandle: (state, action) => {
       state.productViewingItem = action.payload;
@@ -312,5 +316,6 @@ export const {
   increaseProductQuantity,
   decreaseProductQuantity,
   viewProductHandle,
+  
 } = productSlicer.actions;
 export default productSlicer.reducer;
