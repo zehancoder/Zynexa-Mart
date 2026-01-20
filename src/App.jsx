@@ -5,7 +5,8 @@ import Footer from "./app/navberFooter/Footer";
 import Routing from "./app/routes/Routing";
 import { useDispatch, useSelector } from "react-redux";
 import ViewProduct from "./app/common/ViewProduct";
-import { productSuccessFullyAddedMsg } from "./redux/slice";
+import { filterByCategory, productSuccessFullyAddedMsg } from "./redux/slice";
+import { useLocation, useNavigate } from "react-router";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function App() {
       dispatch(productSuccessFullyAddedMsg(false));
     }, 2000);
   }, [productAddedStateMsg]);
+
 
   return (
     <>

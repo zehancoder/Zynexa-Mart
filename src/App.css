@@ -88,3 +88,8 @@ body{
 .customShadow{
   box-shadow: 0 0 20px #FF6C00;
 }
+
+.customShadow2{
+    box-shadow: 0 0 20px #292929;
+
+}

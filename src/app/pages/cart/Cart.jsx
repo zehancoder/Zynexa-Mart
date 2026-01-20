@@ -13,6 +13,7 @@ import {
   viewProductHandle,
 } from "../../../redux/slice";
 import Button from "../../common/Button";
+import { Link } from "react-router";
 
 function Cart() {
   const getCartItem = useSelector((state) => state.cartItem);
@@ -38,8 +39,20 @@ function Cart() {
     priceTrack();
   }, [getCartItem]);
 
+  // chech total price
   const [check, setCheck] = useState(false);
+  // order now state
+  const [order, setOrder] = useState(false);
+  const [orderMessage, setOrderMessage] = useState(false);
 
+  const orderCompleteFunc = () => {
+    setOrder(true);
+
+    setTimeout(() => {
+      setOrderMessage(true);
+      setOrder(false);
+    }, 1000);
+  };
   return (
     <div
       className={`relative ${getCartItem.length < 1 ? "h-[60vh]" : "h-auto"}`}
@@ -132,7 +145,12 @@ function Cart() {
                           </div>
 
                           <div className="py-2 w-[70%] text-gray-700 font-alan text-[14px] font-medium px-10">
-                            <p><span className="text-[15px] text-[#FF6C00]">Description: </span>{product.description}</p>
+                            <p>
+                              <span className="text-[15px] text-[#FF6C00]">
+                                Description:{" "}
+                              </span>
+                              {product.description}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -166,11 +184,26 @@ function Cart() {
                   </div>
                 </div>
                 {check && (
-                  <div className="px-3">
+                  <div className="px-3 mt-6">
                     <h1 className="text-[18px] mt-1 font-alan font-medium text-gray-700">
                       Total Price: $
                       {getCartItem.length * 10 + Math.floor(prevPrice)}
                     </h1>
+                    {order ? (
+                      <div onClick={() => orderCompleteFunc()}>
+                        <Button className={"w-full mt-3"}>
+                          Order Process...
+                        </Button>
+                      </div>
+                    ) : orderMessage ? (
+                      <div onClick={() => orderCompleteFunc()}>
+                        <Button className={"w-full mt-3"}>Order Success</Button>
+                      </div>
+                    ) : (
+                      <div onClick={() => orderCompleteFunc()}>
+                        <Button className={"w-full mt-3"}>Order Now</Button>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -178,6 +211,46 @@ function Cart() {
           </div>
         )}
       </Container>
+
+      {orderMessage && (
+        <div className="bg-white w-[27%] customShadow2 font-alan rounded-lg px-8 py-5 absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50">
+          <div className="">
+            <div className="w-[60%] mx-auto">
+              <img className="mx-auto" src="/images/orderSuccess.png" alt="" />
+            </div>
+            <h1 className="text-xl font-medium text-center text-gray-700 mt-4">
+              Thank you for ordering!
+            </h1>
+            <p className="text-gray-500 text-center mt-3 text-[14px] font-normal">
+              Your items will be packed and shipped soon. Once dispatched,
+              you’ll receive tracking details to follow your delivery. Thank you
+              for shopping with us—we appreciate your trust!
+            </p>
+            <div className="flex items-center justify-around mt-5">
+              <Link to={"/orders"}>
+                <Button
+                  className={
+                    "bg-transparent text-[#FF6C00] border border-[#FF6C00]"
+                  }
+                >
+                  View Order
+                </Button>
+              </Link>
+              <Link to={"/product"}>
+                <Button>Continue Shopping</Button>
+              </Link>
+            </div>
+          </div>
+          <div
+            onClick={() => {
+              setOrderMessage(false);
+            }}
+            className="font-alan text-[26px] text-gray-700 font-medium absolute top-1 p-0.5 transition duration-300 rounded-full hover:text-white cursor-pointer hover:bg-[#FF6C00] right-1"
+          >
+            <IoIosClose />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   filterPriceHandle,
   hightPriceHandle,
 } from "../../redux/slice";
+import { useNavigate } from "react-router";
 
 function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
                       onClick={() =>
                         dispatch(filterByCategory(categories[idx]))
                       }
-                      className={`${filterbyCategory === category ? "bg-[#FF6C00] text-white" : "bg-transparent"} px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border`}
+                      className={`${filterbyCategory === category ? "bg-[#FF6C00] text-white" : 'bg-transparent'} px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border`}
                     >
                       <p className="  ">{category}</p>
                     </div>

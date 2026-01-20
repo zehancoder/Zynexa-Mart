@@ -31,7 +31,7 @@ const initialState = {
     highPrice: 0,
   },
   // product filter by categories
-  filterByCategories: null,
+  filterByCategories: 'All',
   // adding sub category items
   subCategory: {},
   //complete fetching
@@ -52,6 +52,8 @@ const initialState = {
   },
   // homeAppliance data store
   homeAppelianceFurniture: [],
+  // beauty and personal care data
+  beautyAndPersonalCare: [],
 };
 
 export const productSlicer = createSlice({
@@ -298,6 +300,10 @@ export const productSlicer = createSlice({
     homeAppelianceFurnitureHandle: (state, action) => {
       state.homeAppelianceFurniture = action.payload;
     },
+    // beauty and personal care store in redux
+    beautyAndPersonalCareHandle: (state, action) => {
+      state.beautyAndPersonalCare = action.payload;
+    }
   },
 });
 
@@ -328,5 +334,6 @@ export const {
   increaseProductQuantity,
   decreaseProductQuantity,
   viewProductHandle,
+  beautyAndPersonalCareHandle
 } = productSlicer.actions;
 export default productSlicer.reducer;

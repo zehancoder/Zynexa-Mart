@@ -15,7 +15,7 @@ function WomenFassion() {
       <ProductShowPage
         showingProduct={womenFassionFromStore || []}
         text={"Women's Fassion"}
-        category={['Dresses', 'Watches', 'Bags', 'Shoes', 'Jewellery', 'Tops']}
+        category={['Womens-Dresses', 'Womens-Watches', 'Womens-Bags', 'Womens-Shoes', 'Womens-Jewellery', 'Tops', 'All']}
       />
     </div>
   );

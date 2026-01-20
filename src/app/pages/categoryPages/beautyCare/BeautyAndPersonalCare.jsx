@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ProductShowPage from "../../../common/ProductShowPage";
 import loadShopData from "./fetchBeautyProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { beautyAndPersonalCareHandle } from "../../../../redux/slice";
 function BeautyAndPersonalCare() {
-  const [beautyCare, setBeautyCare] = useState([]);
-
+  const beautyData = useSelector((state) => state.beautyAndPersonalCare);
+  const dispatch = useDispatch();
   useEffect(() => {
-    loadShopData().then((data) => {
-      setBeautyCare([data.beautyItem.products, data.fragrancesItem.products, data.skinCareItem.products].flat());
-    });
+    if (beautyData.length === 0) {
+      loadShopData().then((data) => {
+        dispatch(
+          beautyAndPersonalCareHandle([
+            data.beautyItem.products,
+            data.fragrancesItem.products,
+            data.skinCareItem.products,
+          ].flat(),)
+        );
+      });
+    }
   }, []);
 
-  console.log(beautyCare);
-  
+  console.log(beautyData.map(({category}) => category));
 
   return (
     <div>
-      <ProductShowPage showingProduct={beautyCare || []} text={'Beauty and Personal Care'}/>
+      <ProductShowPage
+        category={['Beauty', 'Fragrances', 'Skin-Care', 'All']}
+        showingProduct={beautyData || []}
+        text={"Beauty and Personal Care"}
+      />
     </div>
   );
 }

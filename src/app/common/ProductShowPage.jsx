@@ -16,6 +16,7 @@ import {
 } from "../../redux/slice";
 import api from "../../api/api";
 import Loading from "./Loading";
+import { useNavigate } from "react-router";
 function ProductShowPage({ showingProduct, text, category }) {
   const dispatch = useDispatch();
   const [electronics, setElectronics] = useState([]);
@@ -273,6 +274,10 @@ function ProductShowPage({ showingProduct, text, category }) {
   const filterbyCategory = useSelector((state) => state.filterByCategories);
   const [afterCategoryFilter, setAfterCategoryFilter] = useState([]);
 
+  const nevigate = useNavigate();
+  useEffect(() => {
+    dispatch(filterByCategory('All'));
+  }, [nevigate]);
   useEffect(() => {
     setAfterCategoryFilter(showingProduct);
   }, [showingProduct]);
@@ -280,10 +285,14 @@ function ProductShowPage({ showingProduct, text, category }) {
     if (filterbyCategory !== null) {
       const updateFilter = [];
       showingProduct.map((product) => {
-        if (product.category === filterbyCategory.toLowerCase() || product.brand.toLowerCase() === filterbyCategory.toLowerCase()) {
+        if (
+          product.category === filterbyCategory.toLowerCase() ||
+          (product.hasOwnProperty("brand") &&
+            product.brand.toLowerCase() === filterbyCategory.toLowerCase())
+        ) {
           updateFilter.push(product);
-        }else{
-          setAfterCategoryFilter(showingProduct)
+        } else {
+          setAfterCategoryFilter(showingProduct);
         }
       });
       updateFilter.length > 0 && setAfterCategoryFilter(updateFilter);
