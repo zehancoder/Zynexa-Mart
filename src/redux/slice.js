@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItem: [],
+  cartItem:
+    JSON.parse(localStorage.getItem("cartAndOrderItem"))?.cartItem || [],
   addMessege: false,
   productViewingItem: null,
   loading: false,
@@ -31,7 +32,7 @@ const initialState = {
     highPrice: 0,
   },
   // product filter by categories
-  filterByCategories: 'All',
+  filterByCategories: "All",
   // adding sub category items
   subCategory: {},
   //complete fetching
@@ -54,6 +55,18 @@ const initialState = {
   homeAppelianceFurniture: [],
   // beauty and personal care data
   beautyAndPersonalCare: [],
+  orderItem:
+    JSON.parse(localStorage.getItem("cartAndOrderItem")).orderItem || [],
+};
+
+const updateLocalStorage = (cartItem, orderItem) => {
+  localStorage.setItem(
+    "cartAndOrderItem",
+    JSON.stringify({
+      cartItem: cartItem,
+      orderItem: orderItem,
+    }),
+  );
 };
 
 export const productSlicer = createSlice({
@@ -67,6 +80,7 @@ export const productSlicer = createSlice({
           return product.id !== action.payload.id;
         });
         state.cartItem.push(action.payload);
+        updateLocalStorage(state.cartItem);
       }
     },
     productSuccessFullyAddedMsg: (state, action) => {
@@ -82,6 +96,7 @@ export const productSlicer = createSlice({
         }
         return copyArr;
       });
+      updateLocalStorage(state.cartItem);
     },
     decreaseProductQuantity: (state, action) => {
       state.cartItem = state.cartItem.filter((product, idx, arr) => {
@@ -94,12 +109,14 @@ export const productSlicer = createSlice({
         }
         return copyArr;
       });
+      updateLocalStorage(state.cartItem);
     },
     // remove from cart
     removeFromCart: (state, action) => {
       state.cartItem = state.cartItem.filter((item) => {
         return item.id !== action.payload.id;
       });
+      updateLocalStorage(state.cartItem);
     },
     // product viewing functionality
     viewProductHandle: (state, action) => {
@@ -303,7 +320,16 @@ export const productSlicer = createSlice({
     // beauty and personal care store in redux
     beautyAndPersonalCareHandle: (state, action) => {
       state.beautyAndPersonalCare = action.payload;
-    }
+    },
+    orderItemHandle: (state, action) => {
+      state.orderItem = state.cartItem.map((item) => {
+        return (item = {
+          ...item,
+          order: true,
+        });
+      });
+      updateLocalStorage(state.cartItem, state.orderItem);
+    },
   },
 });
 
@@ -334,6 +360,7 @@ export const {
   increaseProductQuantity,
   decreaseProductQuantity,
   viewProductHandle,
-  beautyAndPersonalCareHandle
+  beautyAndPersonalCareHandle,
+  orderItemHandle,
 } = productSlicer.actions;
 export default productSlicer.reducer;

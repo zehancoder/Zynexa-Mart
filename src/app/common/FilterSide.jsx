@@ -5,8 +5,6 @@ import {
   filterPriceHandle,
   hightPriceHandle,
 } from "../../redux/slice";
-import { useNavigate } from "react-router";
-
 function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const dispatch = useDispatch();
   const filterbyPrice = useSelector((state) => state.filterByPrice);

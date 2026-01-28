@@ -9,6 +9,7 @@ import { FiMinus, FiPlus } from "react-icons/fi";
 import {
   decreaseProductQuantity,
   increaseProductQuantity,
+  orderItemHandle,
   removeFromCart,
   viewProductHandle,
 } from "../../../redux/slice";
@@ -51,12 +52,14 @@ function Cart() {
     setTimeout(() => {
       setOrderMessage(true);
       setOrder(false);
+      dispatch(orderItemHandle())
     }, 1000);
   };
   return (
     <div
       className={`relative ${getCartItem.length < 1 ? "h-[60vh]" : "h-auto"}`}
     >
+      {orderMessage && <div className="overlay z-40"></div>}
       <Container>
         {getCartItem.length < 1 ? (
           <h1 className="text-3xl font-medium font-alan absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
@@ -79,9 +82,7 @@ function Cart() {
                       <IoIosClose />
                     </div>
                     <div className="border h-full border-gray-300 p-2 rounded-lg">
-                      <div
-                        className={`h-full flex gap-2 items-center`}
-                      >
+                      <div className={`h-full flex gap-2 items-center`}>
                         <div className="w-[30%] md:w-[23%] xl:w-[20%] h-full overflow-hidden relative">
                           <img
                             className="w-[100%] h-full object-contain"
@@ -215,7 +216,7 @@ function Cart() {
       </Container>
 
       {orderMessage && (
-        <div className="bg-white sm:w-[60%] sm2:w-[70%] w-[85%] md:w-[50%] lg:w-[43%] xl:w-[33%] 2xl:w-[27%]  customShadow2 font-alan rounded-lg px-8 py-5 absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50">
+        <div className="bg-white sm:w-[60%] sm2:w-[70%] w-[85%] md:w-[50%] lg:w-[43%] xl:w-[33%] 2xl:w-[27%]  customShadow2 font-alan rounded-lg px-8 py-5 fixed top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50">
           <div className="">
             <div className="w-[60%] mx-auto">
               <img className="mx-auto" src="/images/orderSuccess.png" alt="" />

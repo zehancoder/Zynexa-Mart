@@ -14,7 +14,7 @@ function ManFassion() {
       <ProductShowPage
         showingProduct={menFasionFromStore || []}
         text={"Men's Fassion"}
-        category={['Shirts', 'Shoes', 'Watches']}
+        category={['Mens-Shirts', 'Mens-Shoes', 'Mens-Watches', 'All']}
       />
     </div>
   );
