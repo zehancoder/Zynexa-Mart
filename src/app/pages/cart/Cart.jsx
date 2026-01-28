@@ -64,7 +64,7 @@ function Cart() {
           </h1>
         ) : (
           <div className="lg:flex justify-between gap-2">
-            <div className=" w-[70%] mx-auto">
+            <div className="md:w-[95%] w-full lg:w-[65%] xl:w-[70%] mx-auto">
               {getCartItem.map((product, idx) => {
                 return (
                   <div
@@ -79,8 +79,10 @@ function Cart() {
                       <IoIosClose />
                     </div>
                     <div className="border h-full border-gray-300 p-2 rounded-lg">
-                      <div className={`h-full flex gap-2 items-center`}>
-                        <div className="w-[20%] h-full overflow-hidden relative">
+                      <div
+                        className={`h-full flex gap-2 items-center`}
+                      >
+                        <div className="w-[30%] md:w-[23%] xl:w-[20%] h-full overflow-hidden relative">
                           <img
                             className="w-[100%] h-full object-contain"
                             src={product.images[0]}
@@ -100,7 +102,7 @@ function Cart() {
                             </div>
                           </div>
                         </div>
-                        <div className="flex justify-between">
+                        <div className="flex justify-between w-[70%] md:w-[77%] xl:w-[80%]">
                           <div className="text-gray-700">
                             <div className="flex items-center justify-between py-1">
                               {product.discount}
@@ -159,7 +161,7 @@ function Cart() {
                 );
               })}
             </div>
-            <div className="bg-gray-200 font-alan w-[30%] h-[300px] px-3 py-4 rounded-lg relative">
+            <div className="bg-gray-200 mx-auto font-alan w-[90%] md:w-[60%] lg:w-[35%] xl:w-[30%] h-[300px] px-3 py-4 rounded-lg relative">
               <div className="text-gray-700">
                 <h1 className="text-2xl font-alan font-medium text-[#FF6C00]">
                   Order Summery
@@ -213,7 +215,7 @@ function Cart() {
       </Container>
 
       {orderMessage && (
-        <div className="bg-white w-[27%] customShadow2 font-alan rounded-lg px-8 py-5 absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50">
+        <div className="bg-white sm:w-[60%] sm2:w-[70%] w-[85%] md:w-[50%] lg:w-[43%] xl:w-[33%] 2xl:w-[27%]  customShadow2 font-alan rounded-lg px-8 py-5 absolute top-[60%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-50">
           <div className="">
             <div className="w-[60%] mx-auto">
               <img className="mx-auto" src="/images/orderSuccess.png" alt="" />

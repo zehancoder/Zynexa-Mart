@@ -1,8 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
-import Product from "../pages/Product";
+import Product from "../pages/product/Product";
 import HomePage from "../landing/HomePage";
-import Deals from "../pages/Deals";
 import Electronic from "../pages/categoryPages/Electronic";
 import SmartPhoneTablet from "../pages/categoryPages/electronics/SmartPhoneTablet";
 import ComputerLaptop from "../pages/categoryPages/electronics/ComputerLaptop";
@@ -23,7 +22,6 @@ function Routing() {
       <Route path="/" element={<HomePage />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/product" element={<Product />} />
-      <Route path="/deals" element={<Deals />} />
       <Route path="/shop-now/electronics" element={<Electronic />} />
       <Route
         path="/shop-now/electronics/smartphones-tablet"

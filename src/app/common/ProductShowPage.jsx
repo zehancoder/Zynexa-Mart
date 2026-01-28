@@ -285,6 +285,8 @@ function ProductShowPage({ showingProduct, text, category }) {
     if (filterbyCategory !== null) {
       const updateFilter = [];
       showingProduct.map((product) => {
+        console.log(product.category);
+        
         if (
           product.category === filterbyCategory.toLowerCase() ||
           (product.hasOwnProperty("brand") &&

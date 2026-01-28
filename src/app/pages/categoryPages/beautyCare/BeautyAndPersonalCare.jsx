@@ -20,8 +20,6 @@ function BeautyAndPersonalCare() {
     }
   }, []);
 
-  console.log(beautyData.map(({category}) => category));
-
   return (
     <div>
       <ProductShowPage
