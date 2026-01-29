@@ -39,6 +39,8 @@ function Product() {
   });
 
   const loading = useSelector((state) => state.loading)
+  console.log(loading);
+  
   return (
     <div>
       <ProductShowPage
@@ -53,7 +55,7 @@ function Product() {
         }
         className=" text-center mt-4"
       >
-        {productCategories === "All" && (
+        {productCategories === "All" ? loading && (
           <Button
             className={
               " font-alan lg:px-6 lg:text-[15px] lg:py-1 bg-transparent border text-[#FF6C00] hover:bg-[#FF6C00] hover:text-white border-[#FF6C00]"
@@ -61,7 +63,7 @@ function Product() {
           >
             Load more
           </Button>
-        )}
+        ) : ''}
       </div>
     </div>
   );

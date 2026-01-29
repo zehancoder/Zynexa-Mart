@@ -27,7 +27,7 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const filterbyCategory = useSelector((state) => state.filterByCategories);
 
   return (
-    <div>
+    <div className="w-full">
       <div className="">
         <div className="w-full bg-[#FF6C00]  py-3 px-5 rounded-tl-lg rounded-tr-lg">
           <p className="text-[17px] font-alan font-medium text-white uppercase">

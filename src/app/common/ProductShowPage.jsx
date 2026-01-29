@@ -11,14 +11,19 @@ import {
   filterPriceHandle,
   hightPriceHandle,
   homeAppelianceFurnitureHandle,
+  loadingHandle,
   menFassionHandle,
   womenFassionHandle,
 } from "../../redux/slice";
-import api from "../../api/api";
 import Loading from "./Loading";
 import { useNavigate } from "react-router";
 function ProductShowPage({ showingProduct, text, category }) {
   const dispatch = useDispatch();
+  /// make loading true
+  useEffect(() => {
+    showingProduct.length > 0 && dispatch(loadingHandle(true));
+  }, [showingProduct]);
+
   const [electronics, setElectronics] = useState([]);
   const electronicsDataFromStore = useSelector((state) => state.electronics);
   // making all state for store data
@@ -276,7 +281,7 @@ function ProductShowPage({ showingProduct, text, category }) {
 
   const nevigate = useNavigate();
   useEffect(() => {
-    dispatch(filterByCategory('All'));
+    dispatch(filterByCategory("All"));
   }, [nevigate]);
   useEffect(() => {
     setAfterCategoryFilter(showingProduct);
@@ -286,7 +291,7 @@ function ProductShowPage({ showingProduct, text, category }) {
       const updateFilter = [];
       showingProduct.map((product) => {
         console.log(product.category);
-        
+
         if (
           product.category === filterbyCategory.toLowerCase() ||
           (product.hasOwnProperty("brand") &&
@@ -301,17 +306,41 @@ function ProductShowPage({ showingProduct, text, category }) {
     }
   }, [filterbyCategory]);
 
+  // add filter by price functionality
+  const filterByPrice = useSelector((state) => state.filterByPrice);
+
+  useEffect(() => {
+    const finalItem = showingProduct.filter((item) => {
+      if (
+        Math.floor(item.price) >=
+          Math.floor(parseInt(filterByPrice.lowPrice)) &&
+        Math.floor(item.price) <= Math.floor(parseInt(filterByPrice.highPrice))
+      ) {
+        return item;
+      }
+    });
+
+    setAfterCategoryFilter(finalItem);
+  }, [filterByPrice]);
+
+
+
   return afterCategoryFilter.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <div className="lg:flex gap-2.5 mt-2">
-        <div className="lg:w-[25%] xl:w-[18%] lg:static absolute lg:bg-auto bg-white z-30">
-          <FilterSide
-            categories={category || []}
-            minPrice={minPrice}
-            maxPrice={maxPrice}
-          />
+        <div className="lg:w-[25%] xl:w-[18%] relative lg:bg-auto bg-white z-30">
+          <div
+            id="filterSide"
+            className="w-[300px] fixed"
+          >
+            <FilterSide
+              categories={category || []}
+              minPrice={minPrice}
+              maxPrice={maxPrice}
+            />
+          </div>
         </div>
         <div className="w-full lg:w-[75%] xl:w-[82%]">
           <Headings1>{text}</Headings1>
