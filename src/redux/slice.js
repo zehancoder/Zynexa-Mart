@@ -56,7 +56,7 @@ const initialState = {
   // beauty and personal care data
   beautyAndPersonalCare: [],
   orderItem:
-    JSON.parse(localStorage.getItem("cartAndOrderItem")).orderItem || [],
+    JSON.parse(localStorage.getItem("cartAndOrderItem"))?.orderItem || [],
 };
 
 const updateLocalStorage = (cartItem, orderItem) => {

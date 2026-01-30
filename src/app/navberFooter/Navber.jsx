@@ -9,6 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { MdOutlineMenu } from "react-icons/md";
 
 function Navber() {
   const [openCate, setOpenCate] = useState(false);
@@ -157,7 +158,7 @@ function Navber() {
 
   return (
     <div className="px-0 fixed w-full z-40 transition-all duration-300" id="navber">
-      <p className={`text-center font-lexend text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? ' hidden' : ' block'}`}>
+      <p className={`text-center font-lexend text-[13px] md:text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? ' hidden' : ' block'}`}>
         Buy for $500 → Free Shipping!
       </p>
       <Container className={" "}>
@@ -166,7 +167,7 @@ function Navber() {
             <Logo />
           </div>
 
-          <div className="flex relative items-center h-[42px] gap-3  rounded-full bg-white w-[60%]">
+          <div className=" hidden lg:flex relative items-center h-[42px]  gap-3  rounded-full bg-white w-[60%]">
             <div className="bg-[#eeeeee] relative rounded-l-full h-full flex itece gap-2 px-5 border-r border-gray-300">
               <p
                 onClick={() => setOpenCate(!openCate)}
@@ -180,7 +181,7 @@ function Navber() {
                 />
               </p>
               {openCate && (
-                <div className="z-40 absolute top-[105%] font-lexend text-[15px] left-0">
+                <div className="z-40 absolute top-[105%] font-lexend text-[13px] md:text-[14px] lg:text-[15px] left-0">
                   <div className="px-3 py-4 grid grid-cols-2 gap-1 w-[550px] rounded-lg bg-[#eeeeee] text-gray-700">
                     {categories.map(({ pathName, name }) => {
                       return (
@@ -262,16 +263,27 @@ function Navber() {
                   location.pathname.slice(1) === "you"
                     ? "bg-[#FF6C00]"
                     : "bg-transparent"
-                } relative hover:bg-[#FF6C00] px-2 py-2 rounded-full transition duration-200 cursor-pointer`}
+                } relative hover:bg-[#FF6C00] lg:block hidden px-2 py-2 rounded-full transition duration-200 cursor-pointer`}
               >
                 <FaRegUserCircle />
               </Link>
+              <div
+                className={`${
+                  location.pathname.slice(1) === "menu"
+                    ? "bg-[#FF6C00]"
+                    : "bg-transparent"
+                } relative hover:bg-[#FF6C00] lg:hidden block px-1.5 py-1.5 rounded-full transition text-[21px] duration-200 cursor-pointer`}
+              >
+                <MdOutlineMenu />
+              </div>
+
+              
             </div>
           </div>
         </div>
-        <div>
+        <div className=" lg:block hidden">
           <div className="flex font-lexend justify-between items-center">
-            <nav className={`text-[12px] md:text-[14px] flex items-center md:gap-3 gap-2 lg:gap-4 mx-auto py-3 font-medium ${windowScroll > 0 ? 'text-white' : 'text-gray-700'}`}>
+            <nav className={`text-[13px] xl:text-[14px] flex items-center gap-1.5 xl:gap-4 mx-auto py-3 font-medium ${windowScroll > 0 ? 'text-white' : 'text-gray-700'}`}>
               {navLinks.map(({ path, pathName, name }) => {
                 return (
                   <NavLink
@@ -357,7 +369,7 @@ function Navber() {
                 );
               })}
             </nav>
-            <p className={`text-center text-[14px] font-lexend lg:text-[16px] font-medium  text-[#282828] uppercase py-2  ${windowScroll > 0 ? ' hidden' : ' block'}`}>
+            <p className={`text-center text-[14px] font-lexend lg:text-[16px] lg:block hidden font-medium  text-[#282828] uppercase py-2  ${windowScroll > 0 ? ' hidden' : ' block'}`}>
               Buy for $300 → Free Gift!
             </p>
           </div>

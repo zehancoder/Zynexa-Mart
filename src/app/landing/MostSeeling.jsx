@@ -12,7 +12,7 @@ function MostSeeling() {
   console.log(geetingMostSellingData);
   return (
     <div>
-      <Container className={'px-0'}>
+      <Container className={'px-1 md:px-0'}>
         <div>
           <div className="flex items-center rounded-lg flex-wrap">
             {geetingMostSellingData.length > 0 &&

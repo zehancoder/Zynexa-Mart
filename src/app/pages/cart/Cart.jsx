@@ -52,7 +52,7 @@ function Cart() {
     setTimeout(() => {
       setOrderMessage(true);
       setOrder(false);
-      dispatch(orderItemHandle())
+      dispatch(orderItemHandle());
     }, 1000);
   };
   return (
@@ -62,7 +62,7 @@ function Cart() {
       {orderMessage && <div className="overlay z-40"></div>}
       <Container>
         {getCartItem.length < 1 ? (
-          <h1 className="text-3xl font-medium font-alan absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+          <h1 className=" md:text-2xl text-xl lg:text-3xl font-medium font-alan absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
             No Item in Your Cart
           </h1>
         ) : (
@@ -71,19 +71,19 @@ function Cart() {
               {getCartItem.map((product, idx) => {
                 return (
                   <div
-                    className=" h-[150px] p-2 cartParent relative"
+                    className=" md:h-[150px] p-1 md:p-2 cartParent relative"
                     // onMouseOver={animateFunc}
                     // onMouseLeave={animateFinish}
                   >
                     <div
                       onClick={() => dispatch(removeFromCart(getCartItem[idx]))}
-                      className=" absolute top-3 right-3 text-2xl cursor-pointer p-0.5 hover:bg-[#FF6C00] hover:text-white transition duration-300 rounded-full"
+                      className=" absolute top-3 right-3 text-xl md:text-2xl cursor-pointer p-0.5 hover:bg-[#FF6C00] hover:text-white transition duration-300 rounded-full"
                     >
                       <IoIosClose />
                     </div>
                     <div className="border h-full border-gray-300 p-2 rounded-lg">
-                      <div className={`h-full flex gap-2 items-center`}>
-                        <div className="w-[30%] md:w-[23%] xl:w-[20%] h-full overflow-hidden relative">
+                      <div className={`h-full md:flex gap-2 items-center`}>
+                        <div className=" sm2:w-[35%] w-[50%] mx-auto md:w-[23%] xl:w-[20%] h-full overflow-hidden relative">
                           <img
                             className="w-[100%] h-full object-contain"
                             src={product.images[0]}
@@ -103,53 +103,60 @@ function Cart() {
                             </div>
                           </div>
                         </div>
-                        <div className="flex justify-between w-[70%] md:w-[77%] xl:w-[80%]">
-                          <div className="text-gray-700">
-                            <div className="flex items-center justify-between py-1">
-                              {product.discount}
-                            </div>
-                            <p className=" font-normal font-alan  text-[15px] line-clamp-2 tracking-tight leading-[17px]">
-                              {product.title}
-                            </p>
-                            <div className="w-full font-alan font-normal text-[13px]">
-                              Rating:{product.rating}
-                            </div>
-                            <div className="flex font-lexend items-center text-[16px] font-medium gap-2">
-                              <p className="text-[#FF6C00]">${product.price}</p>
-                              <p className="line-through text-gray-500 text-[13px]">
-                                $
-                                {(
-                                  (product.price * product.discountPercentage) /
-                                    100 +
-                                  product.price
-                                ).toFixed(2)}
-                              </p>
-                            </div>
-
-                            <div className=" text-[12px] font-alan mt-3 flex items-center justify-between w-[80px]">
-                              <div
-                                className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
-                                onClick={() => {
-                                  decressQuantity(product);
-                                }}
-                              >
-                                <FiMinus />
+                        <div className="md:flex justify-between w-[100%] md:w-[77%] xl:w-[80%]">
+                          <div className="text-gray-700 md:block flex items-center justify-between">
+                            <div>
+                              <div className="flex items-center justify-between py-1">
+                                {product.discount}
                               </div>
-                              <p>{product.itemQuantity}</p>
-                              <div
-                                className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
-                                onClick={() => {
-                                  incressQuantity(product);
-                                }}
-                              >
-                                <FiPlus />
+                              <p className=" font-normal font-alan text-[14px] md:text-[15px] line-clamp-2 tracking-tight leading-[17px]">
+                                {product.title}
+                              </p>
+                              <div className="w-full font-alan font-normal text-[13px]">
+                                Rating:{product.rating}
+                              </div>
+                            </div>
+                            <div>
+                              <div className="flex font-lexend items-center text-[14px] md:text-[16px] font-medium gap-2">
+                                <p className="text-[#FF6C00]">
+                                  ${product.price}
+                                </p>
+                                <p className="line-through text-gray-500 text-[12px] md:text-[13px]">
+                                  $
+                                  {(
+                                    (product.price *
+                                      product.discountPercentage) /
+                                      100 +
+                                    product.price
+                                  ).toFixed(2)}
+                                </p>
+                              </div>
+
+                              <div className="text-[11px] md:text-[12px] font-alan md:mt-3 flex items-center justify-between w-[80px]">
+                                <div
+                                  className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
+                                  onClick={() => {
+                                    decressQuantity(product);
+                                  }}
+                                >
+                                  <FiMinus />
+                                </div>
+                                <p>{product.itemQuantity}</p>
+                                <div
+                                  className="py-[1.5px] cursor-pointer hover:text-white transition duration-300 px-1 border hover:bg-[#FF6C00] border-[#FF6C00]"
+                                  onClick={() => {
+                                    incressQuantity(product);
+                                  }}
+                                >
+                                  <FiPlus />
+                                </div>
                               </div>
                             </div>
                           </div>
 
-                          <div className="py-2 w-[70%] text-gray-700 font-alan text-[14px] font-medium px-10">
+                          <div className="py-2 md:w-[70%] text-gray-700 font-alan text-[13px] md:text-[14px] font-medium md:px-10">
                             <p>
-                              <span className="text-[15px] text-[#FF6C00]">
+                              <span className="text-[14px] md:text-[15px] text-[#FF6C00]">
                                 Description:{" "}
                               </span>
                               {product.description}
@@ -162,24 +169,24 @@ function Cart() {
                 );
               })}
             </div>
-            <div className="bg-gray-200 mx-auto font-alan w-[90%] md:w-[60%] lg:w-[35%] xl:w-[30%] h-[300px] px-3 py-4 rounded-lg relative">
+            <div className="bg-gray-200 mx-auto font-alan w-[95%] md:mt-0 mt-4 md:w-[60%] lg:w-[35%] xl:w-[30%] lg:h-[350px] px-3 py-4 rounded-lg relative">
               <div className="text-gray-700">
-                <h1 className="text-2xl font-alan font-medium text-[#FF6C00]">
+                <h1 className=" text-xl md:text-2xl font-alan font-medium text-[#FF6C00]">
                   Order Summery
                 </h1>
-                <p className="font-normal text-[15px] mt-5">
+                <p className="font-normal text-[14px] md:text-[15px] mt-5">
                   Subtotal ({getCartItem.length} items)
                 </p>
-                <p className="font-normal text-[15px] mt-2">
+                <p className="font-normal text-[14px] md:text-[15px] mt-2">
                   Shipping Fee: ${getCartItem.length * 10}
                 </p>
               </div>
               <div className="flex items-center mt-10 border-t border-gray-400">
                 <div className="border-r border-gray-400 px-3 py-4">
-                  <h1 className="text-[15px] mt-1 font-alan font-normal text-gray-700">
+                  <h1 className=" text-[14px] md:text-[15px] mt-1 font-alan font-normal text-gray-700">
                     Product Price: ${Math.floor(prevPrice)}
                   </h1>
-                  <h1 className="text-[15px] mt-1 font-alan font-normal text-gray-700">
+                  <h1 className="text-[14px] md:text-[15px] mt-1 font-alan font-normal text-gray-700">
                     Shipping Fee: ${getCartItem.length * 10}
                   </h1>
                   <div onClick={() => setCheck(true)}>
@@ -188,7 +195,7 @@ function Cart() {
                 </div>
                 {check && (
                   <div className="px-3 mt-6">
-                    <h1 className="text-[18px] mt-1 font-alan font-medium text-gray-700">
+                    <h1 className="text-[16px] md:text-[18px] mt-1 font-alan font-medium text-gray-700">
                       Total Price: $
                       {getCartItem.length * 10 + Math.floor(prevPrice)}
                     </h1>

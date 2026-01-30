@@ -22,11 +22,11 @@ function App() {
   return (
     <>
       <Navber />
-      <div className="h-[200px]"></div>
+      <div className="lg:h-[200px] h-[150px]"></div>
       {productViewFromStore && (
         <div
           id="viewProduct"
-          className="fixed z-50 top-[40%] left-[50%] transform -translate-x-[50%] h-[40%] w-[30%] -translate-y-[40%]"
+          className="fixed z-50 top-[37%] left-[50%] transform -translate-x-[50%] h-[40%] lg:w-[40%] md:w-[50%] sm:w-[60%] w-[80%] xl:w-[30%] -translate-y-[40%]"
         >
           <ViewProduct
           // className={"bg-white"}

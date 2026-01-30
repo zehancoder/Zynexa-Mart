@@ -136,7 +136,7 @@ function HomePage() {
           <DealsSection />
           <NewProducts />
           <div className="max-w-[1700px] overflow-hidden mx-auto">
-            <div className="flex items-center gap-2 ">
+            <div className="flex items-center gap-2 px-3 ">
               <div
                 onClick={() =>
                   dispatch(switchToSellAndReviewHandle("Most Selling"))
@@ -183,7 +183,7 @@ function HomePage() {
                   : { transform: `translateX(-100%)` }
               }
             >
-              <div className="shrink-0 w-full">
+              <div className="shrink-0 w-full ">
                 <MostSeeling />
               </div>
               <div className="shrink-0 w-full ">
