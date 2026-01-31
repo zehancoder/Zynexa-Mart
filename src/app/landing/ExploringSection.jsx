@@ -184,7 +184,7 @@ function ExploringSection() {
         <div>
           <div>
             <Headings1>Tranding Categories</Headings1>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:flex  items-center gap-3 lg:py-3 md:py-2 py-1.5 xl:py-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:flex  md:items-center gap-3 lg:py-3 md:py-2 py-1.5 xl:py-5">
               {trendingNow.map(
                 ({ id, description, name, image, products, pathName }) => {
                   return (

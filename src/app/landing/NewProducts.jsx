@@ -64,30 +64,30 @@ function NewProducts() {
       <Container>
         <div>
           <Headings1>New Release • Save Big Today</Headings1>
-          <div className="flex lg:flex-row flex-col my-3 md:my-5 items-center gap-2 h-auto lg:py-2 py-8 lg:h-auto overflow-hidden border border-gray-300 rounded-lg  ">
+          <div className="flex lg:flex-row flex-col my-3 md:my-5 items-center gap-2 h-auto lg:py-2 py-3 md:py-8 lg:h-auto overflow-hidden border border-gray-300 rounded-lg  ">
             <div className=" relative lg:w-[25%] w-full xl:w-[23%] h-full flex flex-col items-center justify-center ">
               <div id="" className=" flex justify-between items-center ">
                 <div
                   onClick={prevSlide}
-                  className="px-3 py-2 cursor-pointer bg-[#FF6C00] rounded-l-full text-2xl text-white"
+                  className="px-1.5 md:px-3 py-1 md:py-2 cursor-pointer bg-[#FF6C00] rounded-l-full text-2xl text-white"
                 >
                   <MdOutlineKeyboardArrowLeft />
                 </div>
                 <div
                   onClick={nextSlide}
-                  className="px-3 py-2 cursor-pointer bg-[#FF6C00] rounded-r-full text-2xl text-white"
+                  className="px-1.5 md:px-3 py-1 md:py-2 cursor-pointer bg-[#FF6C00] rounded-r-full text-2xl text-white"
                 >
                   <MdOutlineKeyboardArrowRight />
                 </div>
               </div>
-              <h1 className="font-alan text-[#FF6C00] mb-3 md:text-xl text-lg lg:text-2xl font-semibold">
+              <h1 className="font-alan text-[#FF6C00] mb-1 md:mb-3 md:text-xl text-lg lg:text-2xl font-semibold">
                 Latest Picks
               </h1>
-              <h1 className="font-alan text-gray-700 mb-3 md:text-lg text-base text-center md:w-[90%] w-full lg:w-[80%] lg:text-xl font-medium">
+              <h1 className="font-alan text-gray-700 mb-1 md:mb-3 md:text-lg text-base text-center md:w-[90%] w-full lg:w-[80%] lg:text-xl font-medium">
                 Launch Offer: Get Yours at a Discount
               </h1>
               <Link to={"/newProduct"}>
-                <Button className={"mt-4"}>Browse All</Button>
+                <Button className={"mt-1 md:mt-4"}>Browse All</Button>
               </Link>
             </div>
 

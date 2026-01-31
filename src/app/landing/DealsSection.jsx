@@ -103,7 +103,7 @@ function DealsSection() {
         <div>
           <Headings1>Super Deals on This Month</Headings1>
 
-          <div className="flex lg:flex-row flex-col my-3 md:my-5 items-center gap-2 h-auto lg:py-2 py-8 lg:h-auto overflow-hidden border border-gray-300 rounded-lg  ">
+          <div className="flex lg:flex-row flex-col my-3 md:my-5 items-center gap-2 h-auto lg:py-2 py-3 md:py-8 lg:h-auto overflow-hidden border border-gray-300 rounded-lg  ">
             <div className=" relative lg:w-[25%] w-full xl:w-[23%] h-full flex flex-col items-center justify-center ">
               <div id="" className=" flex justify-between items-center ">
                 <div

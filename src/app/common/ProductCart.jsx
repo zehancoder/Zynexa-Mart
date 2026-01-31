@@ -44,18 +44,18 @@ function ProductCart({
   // add functionality for favourite product
   return (
     <div
-      className=" w-full p-2 cartParent"
+      className=" w-full p-1 md:p-2 cartParent"
       // onMouseOver={animateFunc}
       // onMouseLeave={animateFinish}
     >
-      <div className="border border-gray-300 p-2 rounded-lg">
+      <div className="border border-gray-300 p-1 md:p-2 rounded-lg">
         <div className={cn("w-full", className)}>
           <div className="w-full overflow-hidden relative">
             <img className="w-full " src={img} alt="" />
             <div className="absolute right-2 text-gray-700 bottom-3">
               <div
                 onClick={() => markToFavouriteFunc(item)}
-                className="cartAnimate p-2 rounded-full bg-white cursor-pointer"
+                className="cartAnimate p-1 md:p-2 rounded-full bg-white cursor-pointer"
               >
                 <FaRegHeart />
               </div>
@@ -71,11 +71,11 @@ function ProductCart({
             <div className="flex items-center justify-between py-1">
               {discount}
             </div>
-            <p className=" font-normal font-alan  text-[15px] line-clamp-2 tracking-tight leading-[17px]">
+            <p className=" font-normal font-alan text-[13px] md:text-[15px] line-clamp-2 tracking-tight leading-[17px]">
               {title}
             </p>
             <div className="w-full">{rating}</div>
-            <div className="flex font-lexend items-center text-[16px] font-medium gap-2">
+            <div className="flex font-lexend items-center text-[14px] md:text-[16px] font-medium gap-2">
               <p className="text-[#FF6C00]">${price}</p>
               <p className="line-through text-gray-500 text-[13px]">
                 ${((price * discountParcent) / 100 + price).toFixed(2)}

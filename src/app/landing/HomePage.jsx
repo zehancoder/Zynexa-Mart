@@ -85,7 +85,6 @@ function HomePage() {
 
   return (
     <>
-
       <div className="">
         <div>
           <Container>
@@ -116,11 +115,11 @@ function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="border  w-full 2xl:w-[16%] border-gray-400 px-3 py-3 rounded-md">
-                <h1 className=" text-[14px] lg:text-[16px] font-lexend font-medium  text-[#282828] uppercase ">
+              <div className="border  w-full 2xl:w-[16%] border-gray-400 px-2 md:px-3 py-2 md:py-3 rounded-md">
+                <h1 className="text-[13px] md:text-[14px] lg:text-[16px] font-lexend font-medium  text-[#282828] uppercase ">
                   Why Shop With Us?
                 </h1>
-                <div className="flex 2xl:flex-col flex-row flex-wrap lg:gap-0 2xl:space-x-0 lg:space-x-5 md:space-x-4 space-x-3 xl:space-x-6 md:mt-4 mt-3 lg:mt-5 font-alan font-[300] space-y-3 text-[12px] md:text-[13px] lg:text-[14px]">
+                <div className="flex 2xl:flex-col flex-row flex-wrap lg:gap-0 2xl:space-x-0 lg:space-x-5 md:space-x-4 space-x-2 xl:space-x-6 md:mt-4 mt-2 lg:mt-5 font-alan font-[300] space-y-1.5 md:space-y-3 text-[12px] md:text-[13px] lg:text-[14px]">
                   {trustBadges.map(({ id, title, icon }) => {
                     return (
                       <div key={id}>

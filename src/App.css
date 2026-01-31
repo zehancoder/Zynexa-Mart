@@ -47,7 +47,7 @@ body{
 
 /* add css animation for cart favourite and view icons */
 .cartAnimate {
-  transform: translateY(250%);
+  transform: translateY(300%);
   transition: all 0.3s ease-in-out;
 }
 .cartParent:hover .cartAnimate {

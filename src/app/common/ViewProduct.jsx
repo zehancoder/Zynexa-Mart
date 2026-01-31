@@ -44,24 +44,24 @@ function ViewProduct({ className }) {
       // onMouseOver={animateFunc}
       // onMouseLeave={animateFinish}
     >
-      <div className=" absolute top-[7%] left-[8%] px-3 py-1 rounded-sm bg-[#cc0c39] text-white font-alan font-normal text-[13px]">
+      <div className=" absolute top-[7%] left-[8%] px-2 md:px-3 py-0.5 md:py-1 rounded-sm bg-[#cc0c39] text-white font-alan font-normal text-[12px] md:text-[13px]">
         {productViewFromStore.discountPercentage}%
       </div>
 
       <div className="border border-gray-300 p-2 rounded-lg">
         <div className={cn("w-full px-4 py-3 rounded-lg bg-white", className)}>
-          <div className="w-[70%] mx-auto overflow-hidden px-4 py-4 relative">
+          <div className=" md:w-[60%] sm2:w-[60%] w-[50%] lg:w-[70%] mx-auto overflow-hidden px-2 md:px-4 py-2 md:py-4 relative">
             <img className="w-full " src={selectedImg} alt="" />
           </div>
           <div className="flex justify-between">
-            <div className="w-[65%] border-r border-gray-400">
+            <div className="w-[70%] md:w-[65%] border-r border-gray-400">
               <div className="flex items-center flex-wrap gap-2">
                 {productViewFromStore.images.map((product, idx) => (
                   <div
                     onClick={() =>
                       setSelectedImg(productViewFromStore.images[idx])
                     }
-                    className={`w-[21%] px-1 py-2 cursor-pointer border-[0.6px] transition duration-300 hover:border-[#FF6C00] rounded ${selectedImg === product ? "border-[#FF6C00]" : "border-[#282828]"}`}
+                    className={`w-[25%] md:w-[21%] px-1 py-2 cursor-pointer border-[0.6px] transition duration-300 hover:border-[#FF6C00] rounded ${selectedImg === product ? "border-[#FF6C00]" : "border-[#282828]"}`}
                   >
                     <img src={product} alt="" />
                   </div>
@@ -71,17 +71,17 @@ function ViewProduct({ className }) {
                 <div className="flex items-center justify-between py-1">
                   {productViewFromStore.discount}
                 </div>
-                <p className=" font-normal font-alan  text-[15px] line-clamp-2 tracking-tight leading-[17px]">
+                <p className=" font-normal font-alan text-[14px] md:text-[15px] line-clamp-2 tracking-tight leading-[17px]">
                   {productViewFromStore.title}
                 </p>
-                <div className="w-full  font-alan font-normal text-[13px]">
+                <div className="w-full  font-alan font-normal text-[12px] md:text-[13px]">
                   <p>Rating: {productViewFromStore.rating}</p>
                 </div>
-                <div className="flex font-lexend items-center text-[16px] font-medium gap-2">
+                <div className="flex font-lexend items-center text-[15px] md:text-[16px] font-medium gap-2">
                   <p className="text-[#FF6C00]">
                     ${productViewFromStore.price}
                   </p>
-                  <p className="line-through text-gray-500 text-[13px]">
+                  <p className="line-through text-gray-500 text-[12px] md:text-[13px]">
                     $
                     {(
                       (productViewFromStore.price *
@@ -93,7 +93,7 @@ function ViewProduct({ className }) {
                 </div>
               </div>
             </div>
-            <div className="px-2 py-1.5 text-gray-700 font-alan font-normal text-[13px]">
+            <div className="px-2 py-1.5 text-gray-700 font-alan font-normal text-[12px] md:text-[13px]">
               <p>Brand: {productViewFromStore.brand}</p>
               <p>Stock: {productViewFromStore.stock}</p>
               <p>
@@ -116,7 +116,7 @@ function ViewProduct({ className }) {
 
       <div
         onClick={closeView}
-        className=" absolute top-5 right-5 text-3xl font-medium text-gray-700 hover:bg-[#FF6C00] hover:text-white rounded-full cursor-pointer transition duration-300"
+        className=" absolute top-5 right-5 text-2xl md:text-3xl font-medium text-gray-700 hover:bg-[#FF6C00] hover:text-white rounded-full cursor-pointer transition duration-300"
       >
         <IoIosClose />
       </div>

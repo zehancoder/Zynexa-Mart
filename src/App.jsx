@@ -25,7 +25,7 @@ function App() {
       {productViewFromStore && (
         <div
           id="viewProduct"
-          className="fixed z-50 top-[37%] left-[50%] transform -translate-x-[50%] h-[40%] lg:w-[40%] md:w-[50%] sm:w-[60%] w-[80%] xl:w-[30%] -translate-y-[40%]"
+          className="fixed z-50 top-[37%] left-[50%] transform -translate-x-[50%] h-[40%] lg:w-[40%] md:w-[50%] sm:w-[60%] sm2:w-[70%] w-[90%] xl:w-[30%] -translate-y-[40%]"
         >
           <ViewProduct
           // className={"bg-white"}
