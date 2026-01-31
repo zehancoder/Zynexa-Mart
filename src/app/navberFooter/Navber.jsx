@@ -10,6 +10,8 @@ import { FaRegHeart } from "react-icons/fa6";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { MdOutlineMenu } from "react-icons/md";
+import ToggleMenu from "./ToggleMenu";
+import { IoClose } from "react-icons/io5";
 
 function Navber() {
   const [openCate, setOpenCate] = useState(false);
@@ -142,7 +144,7 @@ function Navber() {
 
   const location = useLocation();
   const getCartItem = useSelector((state) => state.cartItem);
-  const [windowScroll, setWindowScroll] = useState(0)
+  const [windowScroll, setWindowScroll] = useState(0);
   useEffect(() => {
     const navber = document.querySelector("#navber");
 
@@ -152,17 +154,31 @@ function Navber() {
       } else {
         navber.style.backgroundColor = "transparent";
       }
-      setWindowScroll(window.scrollY)
+      setWindowScroll(window.scrollY);
     });
   }, [window.scrollY]);
 
+  // menu bar for responsive;
+  const [openMenu, setOpenMenu] = useState(false);
+
   return (
-    <div className="px-0 fixed w-full z-40 transition-all duration-300" id="navber">
-      <p className={`text-center font-lexend text-[13px] md:text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? ' hidden' : ' block'}`}>
+    <div
+      className="px-0 fixed w-full z-40 transition-all duration-300"
+      id="navber"
+    >
+      {<div className={`${openMenu ? ' translate-x-0' : 'translate-x-full'} transition duration-300 absolute top-0 h-screen w-screen right-0 z-40 bg-white`}>
+        <IoClose onClick={() => setOpenMenu(!openMenu)} className=" absolute top-1 right-2  text-[18px] hover:text-[#FF6C00]"/>
+        <ToggleMenu setOpenMenu = {setOpenMenu} openMenu={openMenu}/>
+      </div>}
+      <p
+        className={`text-center font-lexend text-[13px] md:text-[14px] lg:text-[16px] font-medium  text-[#282828] uppercase py-2 ${windowScroll > 0 ? " hidden" : " block"}`}
+      >
         Buy for $500 → Free Shipping!
       </p>
       <Container className={" "}>
-        <div className={`flex bg-[#282828] rounded-xl ${windowScroll > 0 ? 'py-3' : 'py-7'} px-6 items-center justify-between`}>
+        <div
+          className={`flex bg-[#282828] rounded-xl ${windowScroll > 0 ? "py-3" : "py-7"} px-6 items-center justify-between`}
+        >
           <div>
             <Logo />
           </div>
@@ -268,6 +284,7 @@ function Navber() {
                 <FaRegUserCircle />
               </Link>
               <div
+                onClick={() => setOpenMenu(!openMenu)}
                 className={`${
                   location.pathname.slice(1) === "menu"
                     ? "bg-[#FF6C00]"
@@ -276,14 +293,14 @@ function Navber() {
               >
                 <MdOutlineMenu />
               </div>
-
-              
             </div>
           </div>
         </div>
         <div className=" lg:block hidden">
           <div className="flex font-lexend justify-between items-center">
-            <nav className={`text-[13px] xl:text-[14px] flex items-center gap-1.5 xl:gap-4 mx-auto py-3 font-medium ${windowScroll > 0 ? 'text-white' : 'text-gray-700'}`}>
+            <nav
+              className={`text-[13px] xl:text-[14px] flex items-center gap-1.5 xl:gap-4 mx-auto py-3 font-medium ${windowScroll > 0 ? "text-white" : "text-gray-700"}`}
+            >
               {navLinks.map(({ path, pathName, name }) => {
                 return (
                   <NavLink
@@ -369,7 +386,9 @@ function Navber() {
                 );
               })}
             </nav>
-            <p className={`text-center text-[14px] font-lexend lg:text-[16px] lg:block hidden font-medium  text-[#282828] uppercase py-2  ${windowScroll > 0 ? ' hidden' : ' block'}`}>
+            <p
+              className={`text-center text-[14px] font-lexend lg:text-[16px] lg:block hidden font-medium  text-[#282828] uppercase py-2  ${windowScroll > 0 ? " hidden" : " block"}`}
+            >
               Buy for $300 → Free Gift!
             </p>
           </div>

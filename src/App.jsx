@@ -18,7 +18,6 @@ function App() {
     }, 2000);
   }, [productAddedStateMsg]);
 
-
   return (
     <>
       <Navber />
@@ -41,9 +40,9 @@ function App() {
       {/* product add to cart messege */}
       {
         <div
-          className={` transform transition duration-300 fixed px-2 py-2 rounded-lg z-50 border border-gray-700 bottom-20 right-20 text-white ${productAddedStateMsg ? "translate-x-0" : "translate-x-[150%]"}`}
+          className={` transform transition duration-300 fixed px-2 py-2 rounded-lg z-50 border border-gray-700 md:bottom-16 bottom-12 lg:bottom-20 md:right-16 right-12 lg:right-20 text-white ${productAddedStateMsg ? "translate-x-0" : "translate-x-[170%]"}`}
         >
-          <p className="bg-[#FF6C00] rounded-lg font-alan text-[16px] font-medium px-3 py-3 customShadow">
+          <p className="bg-[#FF6C00] rounded-lg font-alan md:text-[15px] text-[14px] lg:text-[16px] font-medium md:px-2 px-1.5 lg:px-3 md:py-2 py-1.5 lg:py-3 customShadow">
             Succesfully Added!
           </p>
         </div>

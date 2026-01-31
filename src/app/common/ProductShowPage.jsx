@@ -323,18 +323,13 @@ function ProductShowPage({ showingProduct, text, category }) {
     setAfterCategoryFilter(finalItem);
   }, [filterByPrice]);
 
-
-
   return afterCategoryFilter.length === 0 ? (
     <Loading />
   ) : (
     <Container>
       <div className="lg:flex gap-2.5 mt-2">
-        <div className="lg:w-[25%] xl:w-[18%] relative lg:bg-auto bg-white z-30">
-          <div
-            id="filterSide"
-            className="w-[300px] fixed"
-          >
+        <div className="w-[300px] relative lg:bg-auto bg-white z-30">
+          <div id="filterSide" className="w-[300px] lg:block hidden fixed">
             <FilterSide
               categories={category || []}
               minPrice={minPrice}
@@ -342,8 +337,13 @@ function ProductShowPage({ showingProduct, text, category }) {
             />
           </div>
         </div>
-        <div className="w-full lg:w-[75%] xl:w-[82%]">
-          <Headings1>{text}</Headings1>
+        <div className="w-full lg:w-[75%] xl:w-[80%] 2xl:w-[82%]">
+          <div className="flex items-center gap-2">
+            <Headings1>{text}</Headings1>
+            <p className="md:text-[13px] text-[12px]  lg:hidden block font-alan font-medium text-white px-3 left-36 py-1.5 rounded bg-[#FF6C00] uppercase">
+              Filter
+            </p>
+          </div>
 
           <div className="flex items-center flex-wrap w-full">
             {afterCategoryFilter.length > 0 &&

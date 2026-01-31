@@ -27,10 +27,10 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
   const filterbyCategory = useSelector((state) => state.filterByCategories);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-white ">
       <div className="">
         <div className="w-full bg-[#FF6C00]  py-3 px-5 rounded-tl-lg rounded-tr-lg">
-          <p className="text-[17px] font-alan font-medium text-white uppercase">
+          <p className="text-[15px] md:text-[17px] font-alan font-medium text-white uppercase">
             {" "}
             Filter Product By
           </p>
@@ -50,7 +50,7 @@ function FilterSide({ pages, categories, maxPrice, minPrice }) {
                       onClick={() =>
                         dispatch(filterByCategory(categories[idx]))
                       }
-                      className={`${filterbyCategory === category ? "bg-[#FF6C00] text-white" : 'bg-transparent'} px-1.5 py-0.5 rounded-lg text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border`}
+                      className={`${filterbyCategory === category ? "bg-[#FF6C00] text-white" : 'bg-transparent'} px-1.5 py-0.5 rounded text-[12px] md:text-[13px] hover:bg-[#FF6C00]  hover:text-white transition duration-300 cursor-pointer border-[#FF6C00] border`}
                     >
                       <p className="  ">{category}</p>
                     </div>
